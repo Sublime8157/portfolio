@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Lenis from "lenis";
 import "react-router";
 
+export let lenisInstance = null
+
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -12,6 +14,8 @@ function App() {
       smooth: true,
     });
 
+    lenisInstance = lenis
+    
     const raf = (time) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -19,7 +23,10 @@ function App() {
 
     requestAnimationFrame(raf);
 
-    return () => lenis.destroy();
+    return () => {
+      lenis.destroy();
+      lenisInstance = null
+    }
   }, []);
 
   return (

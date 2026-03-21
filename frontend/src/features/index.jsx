@@ -23,23 +23,23 @@ const index = () => {
           </div>
         </div>
         {/* Technologies */}
-        <div className="w-full h-auto">
+        <div id="technologies" className="w-full h-auto">
           <Technologies />
         </div>
         {/* Experiences */}
-        <div className="p-10">
+        <div id="experiences" className="p-10">
           <Experiences />
         </div>
         {/* Projects */}
-        <div className="px-20">
+        <div id="projects" className="px-20">
           <Projects />
         </div>
         {/* Trainings */}
-        <div className="p-10">
+        <div id="trainings" className="p-10">
           <Trainings />
         </div>
         {/* Contacts */}
-        <div className="p-10">
+        <div id="contact" className="p-10">
           <Contacts />
         </div>
         {/* Footer */}
