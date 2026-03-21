@@ -7,3 +7,7 @@
   font-style: normal;
   transition-duration: 100ms;
 }
+
+html {
+  scroll-behavior: smooth;
+}

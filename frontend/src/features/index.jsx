@@ -36,7 +36,7 @@ const index = () => {
         </div>
         {/* Trainings */}
         <div className="p-10">
-          <Trainings />urc
+          <Trainings />
         </div>
         {/* Contacts */}
         <div className="p-10">
@@ -46,7 +46,7 @@ const index = () => {
       </div>
         <div className="flex items-center text-xs px-2 justify-between border-t border-gray-700 p-2 w-screen text-[#535356]">
           <div>@ {year} JOVEN MIRAN</div>
-          <div>BUILT IN REACT</div>
+          <div>BUILT IN REACT & NODEJS</div>
       </div>
     </div>
   );
