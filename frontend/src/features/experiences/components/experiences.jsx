@@ -3,7 +3,7 @@ import experienceList from "../components/experienceList.jsx";
 const experiences = () => {
   return (
     <div>
-      <h1 className="mt-10 text-center text-4xl">Experiences</h1>
+      <h1 className="mt-10 text-center text-2xl">EXPERIENCES</h1>
       <ul className="p-10 flex flex-row justify-between gap-8 items-center">
         {experienceList.map((exp, index) => (
           <div key={index} className="flex gap-4 flex-col">

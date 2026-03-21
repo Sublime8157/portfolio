@@ -6,7 +6,7 @@ import Button from "../utils/Button.jsx"
 const contacts = () => {
   return (
     <div className="">
-      <h1 className="text-center text-4xl">Contact</h1>
+      <h1 className="text-center text-2xl">CONTACT</h1>
       <div className="items-center p-10 flex flex-row justify-evenly">
         <div>
           {ContactList.map((contact, index) => (

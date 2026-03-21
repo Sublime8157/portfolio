@@ -2,11 +2,11 @@ import { lenisInstance } from "../../App";
 
 const nav = () => {
   const sections = [
-    "About me",
-    "Technologies",
-    "Experiences",
-    "Trainings",
-    "Contact",
+    "ABOUT",
+    "TECHNOLOGIES",
+    "EXPERIENCES",
+    "TRAININGS",
+    "CONTACT",
   ];
 
   const handleClick = (section) => {
@@ -21,8 +21,8 @@ const nav = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between">
-      <div>Joven</div>
+    <nav className="border-b py-6  flex flex-row px-20 text-xs border-gray-800 w-screen items-center justify-between">
+      <div>joven.dev</div>
       <ul className="flex gap-10">
         {sections.map((section, index) => (
           <li

@@ -3,7 +3,7 @@ import trainingList from "./trainingList";
 const trainings = () => {
   return (
     <div className="flex flex-col">
-      <div className="text-center text-4xl">Trainings</div>
+      <div className="text-center text-2xl">TRAININGS</div>
 
       <div className="flex flex-col gap-8 p-10">
         {trainingList.map((training, index) => (

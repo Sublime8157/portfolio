@@ -3,7 +3,7 @@ import ProjectList from "./components/projectList";
 const projects = () => {
   return (
     <div>
-      <h1 className="text-4xl text-center">Projects</h1>
+      <h1 className="text-2xl text-center">PROJECTS</h1>
       {ProjectList.map((list, index) => (
         <div key={index} className="py-10 flex flex-col gap-4">
           <h6>
