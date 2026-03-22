@@ -1,11 +1,18 @@
 import ProjectList from "./components/projectList";
+import Motion from "../utils/Motion";
 
 const projects = () => {
   return (
     <div>
-      <h1 className="text-2xl text-center">PROJECTS</h1>
+      <Motion direction="top" className="text-2xl text-center">
+        PROJECTS
+      </Motion>
       {ProjectList.map((list, index) => (
-        <div key={index} className="py-10 flex flex-col gap-4">
+        <Motion
+          direction="left"
+          key={index}
+          className="p-10 flex flex-col gap-4"
+        >
           <h6>
             {list.name} - {list.role}
           </h6>
@@ -18,7 +25,7 @@ const projects = () => {
               ))}
             </ul>
           </div>
-        </div>
+        </Motion>
       ))}
     </div>
   );

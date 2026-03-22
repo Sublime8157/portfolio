@@ -1,12 +1,19 @@
 import experienceList from "../components/experienceList.jsx";
+import Motion from "../../utils/Motion.jsx";
 
 const experiences = () => {
   return (
     <div>
-      <h1 className="mt-10 text-center text-2xl">EXPERIENCES</h1>
+      <Motion direction="top" className="mt-10 text-center text-2xl">
+        EXPERIENCES
+      </Motion>
       <ul className="p-10 flex flex-row justify-between gap-8 items-center">
         {experienceList.map((exp, index) => (
-          <div key={index} className="flex gap-4 flex-col">
+          <Motion
+            direction="bottom"
+            key={index}
+            className="flex gap-4 flex-col"
+          >
             <div className="gap-2 items-center flex-row flex">
               <img src={exp.logo} width={40}></img>
               <div className="flex flex-col">
@@ -23,7 +30,7 @@ const experiences = () => {
                 {exp.paragraph}
               </div>
             </div>
-          </div>
+          </Motion>
         ))}
       </ul>
     </div>

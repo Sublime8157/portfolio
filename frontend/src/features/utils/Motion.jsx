@@ -7,15 +7,23 @@ const directionMap = {
   bottom: { y: 50 },
 };
 
-const Motion = ({ direction = "bottom", duration = 0.8, className = "", children }) => {
+const Motion = ({
+  direction = "bottom",
+  duration = 0.8,
+  className = "",
+  once = true,
+  delay = 0,
+  children,
+}) => {
   const initial = { opacity: 0, ...directionMap[direction] };
 
   return (
     <motion.div
       initial={initial}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ duration, delay, ease: "easeOut" }}
       className={className}
+      viewport={{ once, amount: 1 }}
     >
       {children}
     </motion.div>

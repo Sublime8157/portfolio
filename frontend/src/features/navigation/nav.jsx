@@ -5,13 +5,14 @@ const nav = () => {
     "ABOUT",
     "TECHNOLOGIES",
     "EXPERIENCES",
+    "PROJECTS",
     "TRAININGS",
     "CONTACT",
   ];
 
   const handleClick = (section) => {
     const id = section.toLowerCase().replaceAll(/\ /g, "");
-    
+
     if (lenisInstance) {
       lenisInstance.scrollTo(`#${id}`, {
         duration: 2,
