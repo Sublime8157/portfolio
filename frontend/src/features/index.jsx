@@ -13,37 +13,37 @@ const index = () => {
 
   return (
     <div className="">
-      <div className="bg-[#0f0e17]/90 z-50 ackdrop-blur-md fixed text-[#fffffe] md:block hidden">
+      <div className="bg-[#0f0e17]/90 z-50 ackdrop-blur-md fixed text-[#fffffe] lg:block hidden">
         <Nav />
       </div>
-      <div className="text-sm flex flex-col w-screen text-[#fffffe] md:px-20 ">
+      <div className="text-sm flex flex-col w-screen text-[#fffffe] lg:px-20 ">
         {/* Hero */}
-        <div id="hero" className="md:h-screen h-auto md:py-0 py-20 flex flex-col">
-          <div className="px-10 md:h-11/12 h-9/12 flex items-center">
+        <div id="hero" className="lg:h-screen h-auto lg:py-0 py-20 flex flex-col">
+          <div className="px-10 lg:h-11/12 h-9/12 flex items-center">
             <Hero />
           </div>
       </div>
-        <div id="about" className="md:p-20 p-10">
+        <div id="about" className="lg:p-20 p-10">
           <About />
         </div>
         {/* Technologies */}
-        <div id="technologies" className="md:p-20 p-10">
+        <div id="technologies" className="lg:p-20 p-10">
           <Technologies />
         </div>
         {/* Experiences */}
-        <div id="experiences" className="md:p-20 p-10">
+        <div id="experiences" className="lg:p-20 p-10">
           <Experiences />
         </div>
         {/* Projects */}
-        <div id="projects" className="md:p-20 p-10">
+        <div id="projects" className="lg:p-20 p-10">
           <Projects />
         </div>
         {/* Trainings */}
-        <div id="trainings" className="md:p-20 p-10">
+        <div id="trainings" className="lg:p-20 p-10">
           <Trainings />
         </div>
         {/* Contacts */}
-        <div id="contact" className="md:p-20 p-10">
+        <div id="contact" className="lg:p-20 p-10">
           <Contacts />
         </div>
         {/* Footer */}

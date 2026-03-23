@@ -41,17 +41,17 @@ const Projects = () => {
       </Motion>
 
       {ProjectList.map((list, index) => (
-        <Motion key={index} className="md:p-10 pt-5 flex flex-col md:flex-row gap-4">
+        <Motion key={index} className="lg:p-10 pt-5 flex flex-col lg:flex-row gap-4">
           <div className="flex flex-col gap-4">
-            <h6 className="md:text-base text-xs">
+            <h6 className="lg:text-base text-xs">
               {list.name} - {list.role}
             </h6>
-            <p className="md:text-base text-xs text-[#a7a9be] whitespace-pre-line">
+            <p className="lg:text-base text-xs text-[#a7a9be] whitespace-pre-line">
               {list.paragraph}
             </p>
             <ul className="flex flex-row gap-4">
               {list.technologies.map((tech, i) => (
-                <li key={i} className="md:text-base text-xs">
+                <li key={i} className="lg:text-base text-xs">
                   {tech}
                 </li>
               ))}
@@ -71,14 +71,14 @@ const Projects = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 1 }}
-            className=" relative md:w-50 h-40 w-80  cursor-pointer shrink-0"
+            className=" relative lg:w-50 h-40 w-100  cursor-pointer shrink-0"
             onClick={() => handleOpen(list)}
           >
             {list.images.map((image, i) => (
               <img
                 key={i}
                 src={image}
-                className="absolute md:w-40 h-40 object-cover rounded-lg shadow-md"
+                className="absolute lg:w-40 h-40 object-cover rounded-lg shadow-md"
                 style={{
                   top: i * 6,
                   left: i * 6,
@@ -109,7 +109,7 @@ const Projects = () => {
 
             <img
               src={selectedProject.images[currentIndex]}
-              className="w-full h-40 md:h-80 object-cover rounded-lg"
+              className="w-full h-40 lg:h-80 object-cover rounded-lg"
             />
 
             <p className="text-center text-sm text-gray-500 mt-2">

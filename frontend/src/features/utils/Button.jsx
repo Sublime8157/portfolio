@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const button = ({ variant = "primary", className = "", onClick, children }) => {
   const variants = {
     primary: "bg-[#ff8906] hover:opacity-60",
@@ -5,12 +7,14 @@ const button = ({ variant = "primary", className = "", onClick, children }) => {
   };
 
   return (
-    <button
-      className={`text-center md:text-base text-xs md:py-5 p-3 cursor-pointer ${variants[variant]} ${className}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 1 }}>
+      <button
+        className={`text-center lg:text-base text-xs p-3 cursor-pointer ${variants[variant]} ${className}`}
+        onClick={onClick}
+      >
+        {children}
+      </button>{" "}
+    </motion.button>
   );
 };
 
