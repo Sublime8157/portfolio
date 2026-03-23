@@ -3,7 +3,7 @@ const InputTextArea = ({ placeholder = "", name = "", classname = "" }) => {
     <div>
       <textarea
         type="textarea"
-        className={`text-black p-2 text-xs bg-white h-9 w-100 ${classname}`}
+        className={`text-black p-2 text-xs bg-white h-9 w-full ${classname}`}
         name={name}
         placeholder={placeholder}
       ></textarea>

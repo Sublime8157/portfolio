@@ -5,10 +5,11 @@ const experiences = [
   {
     logo: ExpLogo1,
     name: "Jeonsoft Corporation",
-    role: "Junior Software Developer",
+    role: "Software Developer",
     tenure: "July 2024 - January 2026",
-    paragraph:
-      "Maintained and enhanced a production payroll system used by enterprise clients, resolving critical payroll computation issues affecting 500+ employees. \n \n Developed and customized payroll features using Node.js, Ruby on Rails, SQL, WebixJS, and Tailwind CSS, improving system usability and functionality. \n \n  Optimized SQL queries to improve payroll report generation by 40% and collaborated with senior developers to deploy fixes and enhancements to live environments.",
+    paragraph: ` Maintained and enhanced a production payroll system used by enterprise clients, resolving critical payroll computation issues affecting over 500 employees. \n
+    Developed and customized payroll features using Node.js, Ruby on Rails, SQL, WebixJS, and Tailwind CSS, improving system usability and overall functionality. \n
+    Optimized SQL queries, reducing payroll report generation time by 40%, and collaborated with senior developers to deploy fixes and enhancements to live production environments.`,
   },
   {
     logo: ExpLogo2,

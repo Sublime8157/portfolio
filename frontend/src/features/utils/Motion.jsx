@@ -23,7 +23,7 @@ const Motion = ({
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration, delay, ease: "easeOut" }}
       className={className}
-      viewport={{ once, amount: 1 }}
+      viewport={{ once, amount: 0.9 }}
     >
       {children}
     </motion.div>

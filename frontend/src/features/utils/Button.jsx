@@ -5,7 +5,7 @@ const button = ({ variant = "primary", classname = "", children }) => {
 
   return (
     <button
-      className={`text-center py-5 cursor-pointer ${variants[variant]} ${classname}`}
+      className={`text-center md:text-base text-xs md:py-5 p-3 cursor-pointer ${variants[variant]} ${classname}`}
     >
       {children}
     </button>

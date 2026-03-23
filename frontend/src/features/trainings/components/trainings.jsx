@@ -7,17 +7,17 @@ const trainings = () => {
       <Motion direction="top" className="text-center text-2xl">
         TRAININGS
       </Motion>
-      <div className="flex flex-col gap-8 p-10">
+      <div className="flex flex-col gap-8 md:p-10 pt-5">
         {trainingList.map((training, index) => (
           <Motion direction="bottom" delay={index * 0.03}>
             <div key={index} className="flex flex-col gap-2">
               <div>
-                <h6>{training.title}</h6>
-                <h6 className="text-[#a7a9be]" style={{ fontStyle: "italic" }}>
+                <h6 className="md:text-base text-xs">{training.title}</h6>
+                <h6 className="text-[#a7a9be] md:text-base text-xs" style={{ fontStyle: "italic" }}>
                   {training.duration}
                 </h6>
               </div>
-              <p className="text-[#a7a9be]">{training.paragraph}</p>
+              <p className="text-[#a7a9be] md:text-base text-xs">{training.paragraph}</p>
             </div>
           </Motion>
         ))}

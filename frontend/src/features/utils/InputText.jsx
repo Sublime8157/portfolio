@@ -3,7 +3,7 @@ const InputText = ({ placeholder = "", name = "", className = "" }) => {
     <div>
       <input
         type="text"
-        className={`text-black ps-2 text-xs bg-white h-9 w-100 ${className}`}
+        className={`text-black ps-2 text-xs bg-white h-9 w-full ${className}`}
         name={name}
         placeholder={placeholder}
       ></input>
