@@ -38,7 +38,7 @@ const nav = () => {
 
   return (
     <div
-      className={`w-42 lg:w-screen bg-[#0f0e17]/50 lg:bg-[#0f0e17]/90 z-50 backdrop-blur-md fixed -right-20 lg:right-0 text-[#fffffe] ${revealNav ? "translate-x-0" : "translate-x-17"}`}
+      className={`w-42 lg:w-screen bg-[#0f0e17]/50 lg:bg-[#0f0e17]/90 z-50 backdrop-blur-md fixed -right-20 lg:right-0 text-[#fffffe] ${revealNav ? "translate-x-0" : "translate-x-20"}`}
       style={{ transitionDuration: "1000ms" }}
     >
       <nav
