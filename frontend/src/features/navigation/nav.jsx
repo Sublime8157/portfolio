@@ -21,11 +21,12 @@ const nav = () => {
 
   const [revealNav, setRevealNav] = useState(true);
   useEffect(() => {
-    if (!isLg) setRevealNav(false);
+   setRevealNav(isLg);
   }, [isLg]);
 
   const navRef = useRef(null);
   useEffect(() => {
+    if(revealNav) return
     const handleClickOutsude = (e) => {
       if (navRef.current && !navRef.current.contains(e.target)) {
         setRevealNav(false);

@@ -7,7 +7,7 @@ const index = () => {
   const year = today.getFullYear();
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <div>
         <Nav />
       </div>
