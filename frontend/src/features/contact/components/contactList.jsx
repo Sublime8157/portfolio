@@ -5,14 +5,10 @@ const contactList = [
     info: "miranj8157@gmail.com",
   },
   // {
-  //   type: "Address",
-  //   info: "Rizal City",
+  //   icon: "logo-linkedin",
+  //   type: "LinkedIn",
+  //   info: "https://www.linkedin.com/in/joven-miran-449207313/",
   // },
-  {
-    icon: "logo-linkedin",
-    type: "LinkedIn",
-    info: "https://www.linkedin.com/in/joven-miran-449207313/",
-  },
   {
     icon: "logo-github",
     type: "Github",

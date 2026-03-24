@@ -61,8 +61,17 @@ const Hero = () => {
           <TypeAnimation sequence={[Paragraph, 1000]} speed={99} />
         </div>
         <div className="flex flex-row lg:gap-4 gap-2">
-          <Button variant="primary" className="lg:w-60 w-40">
-            Download Resume
+          <Button
+            variant="primary"
+            className="lg:w-60 w-40 flex items-center justify-center gap-4"
+            onClick={() =>
+              window.open(
+                "https://www.linkedin.com/in/joven-miran-449207313/",
+                "_blank",
+              )
+            }
+          >
+            <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
           </Button>
 
           <Button
@@ -73,17 +82,15 @@ const Hero = () => {
               setCopyEmail(true);
             }}
           >
-            {!copyEmail ? (
-              "Copy Email"
-            ) : (
-              <div className="flex flex-row items-center justify-center gap-4">
-                Copied
-                <ion-icon
-                  name="checkmark-done-outline"
-                  class="text-lg"
-                ></ion-icon>
-              </div>
-            )}
+            <div className="flex flex-row items-center justify-center gap-4">
+              {copyEmail ? "Copied" : "Copy Email"}
+              <ion-icon
+                name={
+                  copyEmail ? "checkmark-done-outline" : "clipboard-outline"
+                }
+                class="text-lg"
+              ></ion-icon>
+            </div>
           </Button>
         </div>
       </Motion>
