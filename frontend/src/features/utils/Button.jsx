@@ -4,6 +4,7 @@ const button = ({ variant = "primary", className = "", onClick, children }) => {
   const variants = {
     primary: "bg-[#ff8906] hover:opacity-60",
     outline: "border border-[#ff8906] text-[#ff8906]",
+    plain: ""
   };
 
   return (

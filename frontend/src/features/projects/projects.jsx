@@ -71,7 +71,7 @@ const Projects = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 1 }}
-            className=" relative lg:w-50 h-40 w-100  cursor-pointer shrink-0"
+            className=" relative lg:w-50 h-40 w-full  cursor-pointer shrink-0"
             onClick={() => handleOpen(list)}
           >
             {list.images.map((image, i) => (

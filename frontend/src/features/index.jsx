@@ -16,13 +16,16 @@ const index = () => {
       <div className="bg-[#0f0e17]/90 z-50 ackdrop-blur-md fixed text-[#fffffe] lg:block hidden">
         <Nav />
       </div>
-      <div className="text-sm flex flex-col w-screen text-[#fffffe] lg:px-20 ">
+      <div className="text-sm flex flex-col text-[#fffffe] lg:px-20 ">
         {/* Hero */}
-        <div id="hero" className="lg:h-screen h-auto lg:py-0 py-20 flex flex-col">
+        <div
+          id="hero"
+          className="lg:h-screen h-auto lg:py-0 py-20 flex flex-col"
+        >
           <div className="px-10 lg:h-11/12 h-9/12 flex items-center">
             <Hero />
           </div>
-      </div>
+        </div>
         <div id="about" className="lg:p-20 p-10">
           <About />
         </div>
