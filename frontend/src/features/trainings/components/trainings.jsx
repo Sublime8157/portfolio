@@ -4,20 +4,25 @@ import Motion from "../../utils/Motion";
 const trainings = () => {
   return (
     <div className="flex flex-col">
-      <Motion direction="top" className="text-center text-2xl">
+      <Motion direction="top" className="text-center text-lg md:text-2xl">
         TRAININGS
       </Motion>
       <div className="flex flex-col gap-8 lg:p-10 pt-5">
         {trainingList.map((training, index) => (
-          <Motion direction="bottom" delay={index * 0.03}>
-            <div key={index} className="flex flex-col gap-2">
+          <Motion key={index} direction="bottom" delay={index * 0.03}>
+            <div className="flex flex-col gap-2">
               <div>
-                <h6 className="lg:text-base text-xs">{training.title}</h6>
-                <h6 className="text-[#a7a9be] lg:text-base text-xs" style={{ fontStyle: "italic" }}>
+                <h6 className="lg:text-base text-sm">{training.title}</h6>
+                <h6
+                  className="text-[#a7a9be] lg:text-base text-sm"
+                  style={{ fontStyle: "italic" }}
+                >
                   {training.duration}
                 </h6>
               </div>
-              <p className="text-[#a7a9be] lg:text-base text-xs">{training.paragraph}</p>
+              <p className="text-[#a7a9be] lg:text-base text-sm">
+                {training.paragraph}
+              </p>
             </div>
           </Motion>
         ))}

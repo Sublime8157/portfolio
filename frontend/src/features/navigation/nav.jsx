@@ -1,19 +1,13 @@
 import { lenisInstance } from "../../App";
+import sections from "../navigation/components/sections.jsx";
 
 const nav = () => {
-  const sections = [
-    "ABOUT",
-    "TECHNOLOGIES",
-    "EXPERIENCES",
-    "PROJECTS",
-    "TRAININGS",
-    "CONTACT",
-  ];
-
   const handleClick = (section) => {
     const id = section.toLowerCase().replaceAll(/\ /g, "");
 
+    // lenis is a package that handles the smooth scrolling
     if (lenisInstance) {
+      // Proceed to id (section)
       lenisInstance.scrollTo(`#${id}`, {
         duration: 2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -31,7 +25,7 @@ const nav = () => {
             onClick={() => handleClick(section)}
             key={index}
           >
-            {section}
+            {section.toUpperCase()}
           </li>
         ))}
       </ul>

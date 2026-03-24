@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 const Hero = () => {
   const [revealRole, setRevealRole] = useState(false);
 
+  // after 5 secs the typing animation will replace the static role
   useEffect(() => {
     const timeout = setTimeout(() => {
       setRevealRole(true);
@@ -18,7 +19,7 @@ const Hero = () => {
   }, []);
 
   const [copyEmail, setCopyEmail] = useState(false);
-  // turn back to false after triggered to true
+  // replace the text to copied after 3 secs after clicking
   useEffect(() => {
     if (copyEmail) {
       const timer = setTimeout(() => {

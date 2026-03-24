@@ -18,7 +18,7 @@ const contacts = () => {
   };
   return (
     <div className="">
-      <Motion direction="top" className="text-center text-2xl">
+      <Motion direction="top" className="text-center text-lg md:text-2xl">
         CONTACT
       </Motion>
       <div className="items-center lg:p-10 pt-5 gap-8 flex lg:flex-row flex-col justify-evenly">
@@ -58,7 +58,9 @@ const contacts = () => {
             placeholder="message"
             classname="h-40 "
           />
-          <Button className="w-full py-2! text-gray-600! border bg-[#0f0e17]!">Submit</Button>
+          <Button className="w-full py-2! text-gray-600! border bg-[#0f0e17]!">
+            Submit
+          </Button>
         </Motion>
       </div>
     </div>

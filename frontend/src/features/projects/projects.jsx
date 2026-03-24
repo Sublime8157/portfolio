@@ -31,27 +31,30 @@ const Projects = () => {
   };
 
   const handleLinkClick = () => {
-    window.open('https://github.com/Sublime8157/asTee-defended-.git', '_blank')
-  }
-  
+    window.open("https://github.com/Sublime8157/asTee-defended-.git", "_blank");
+  };
+
   return (
     <div>
-      <Motion direction="top" className="text-2xl text-center">
-        PROJECTS
+      <Motion direction="top" className="text-lg lg:text-2xl text-center">
+        PROJECT{ProjectList.length > 1 ? "S" : ""}
       </Motion>
 
       {ProjectList.map((list, index) => (
-        <Motion key={index} className="lg:p-10 pt-5 flex flex-col lg:flex-row gap-4">
+        <Motion
+          key={index}
+          className="lg:p-10 pt-5 flex flex-col lg:flex-row gap-4"
+        >
           <div className="flex flex-col gap-4">
-            <h6 className="lg:text-base text-xs">
+            <h6 className="lg:text-base text-sm">
               {list.name} - {list.role}
             </h6>
-            <p className="lg:text-base text-xs text-[#a7a9be] whitespace-pre-line">
+            <p className="lg:text-base text-sm text-[#a7a9be] whitespace-pre-line">
               {list.paragraph}
             </p>
             <ul className="flex flex-row gap-4">
               {list.technologies.map((tech, i) => (
-                <li key={i} className="lg:text-base text-xs">
+                <li key={i} className="lg:text-base text-sm">
                   {tech}
                 </li>
               ))}
@@ -62,12 +65,12 @@ const Projects = () => {
               className="cursor-pointer w-32 px-2 py-2 justify-between border text-gray-600 border-gray-700 flex flex-row gap-2 items-center"
               onClick={handleLinkClick}
             >
-              <p className="">Repository</p>
+              <p>Repository</p>
               <FontAwesomeIcon icon={faLocationArrow} />
             </motion.button>
           </div>
 
-          {/* Image Stack */} 
+          {/* Image Stack */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 1 }}

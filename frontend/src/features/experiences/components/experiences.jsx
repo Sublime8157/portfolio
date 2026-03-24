@@ -3,15 +3,17 @@ import Motion from "../../utils/Motion.jsx";
 import Button from "../../utils/Button.jsx";
 import { useState, useCallback } from "react";
 import useBreakPoints from "../../../hooks/useBreakPoint.js";
+import Hr from "../../utils/Hr.jsx";
 
 const Experiences = () => {
   const isLg = useBreakPoints(1024);
   const [revealedIndices, setRevealedIndices] = useState(() => new Set());
 
+  // this function add / removing item on Set() 
   const toggleReveal = useCallback((index) => {
     setRevealedIndices((prev) => {
       const next = new Set(prev);
-      if (next.has(index)) {
+      if (next.has(index)) { // toggle the adding and removing on set
         next.delete(index);
       } else {
         next.add(index);
@@ -23,11 +25,11 @@ const Experiences = () => {
   const isRevealed = (index) => isLg || revealedIndices.has(index);
 
   return (
-    <div>
-      <Motion direction="top" className="mt-10 text-center text-2xl">
+    <div className="flex flex-col gap-10">
+      <Motion direction="top" className="mt-10 text-center text-lg md:text-2xl">
         EXPERIENCES
       </Motion>
-      <ul className="pt-5 flex flex-col justify-between gap-8 items-center">
+      <ul className="pt-5 flex flex-col justify-between gap-20 items-center">
         {experienceList.map((exp, index) => (
           <Motion
             direction="bottom"
@@ -38,11 +40,11 @@ const Experiences = () => {
               <div className="gap-2 items-center flex flex-row">
                 <img src={exp.logo} width={40}></img>
                 <div className="flex flex-col">
-                  <h6 className="lg:text-base text-xs">
+                  <h6 className="lg:text-base text-sm">
                     {exp.name} - {exp.role}
                   </h6>
                   <h6
-                    className="text-[#a7a9be] lg:text-base text-xs"
+                    className="text-[#a7a9be] lg:text-base text-sm"
                     style={{ fontStyle: "italic" }}
                   >
                     {exp.tenure}
@@ -66,7 +68,7 @@ const Experiences = () => {
                 transition: "max-height 0.8s ease, opacity 0.5s ease",
               }}
             >
-              <div className="lg:text-sm text-xs text-[#a7a9be] whitespace-pre-line">
+              <div className="text-sm text-[#a7a9be] whitespace-pre-line">
                 {exp.paragraph.split("\n").map(
                   (line, i) =>
                     line.trim() !== "" && (
@@ -80,6 +82,7 @@ const Experiences = () => {
                 )}
               </div>
             </div>
+            <Hr></Hr>
           </Motion>
         ))}
       </ul>
