@@ -10,7 +10,6 @@ import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 const contacts = () => {
   const handleLinkClick = (link) => {
     if (link.includes("@")) {
-      console.log(link);
       window.open(`mailto:${link}`, "_self");
     } else {
       window.open(link, "_blank");

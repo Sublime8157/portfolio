@@ -7,8 +7,8 @@ const index = () => {
   const year = today.getFullYear();
 
   return (
-    <div className="">
-      <div className="bg-[#0f0e17]/90 z-50 ackdrop-blur-md fixed text-[#fffffe] lg:block hidden">
+    <div>
+      <div>
         <Nav />
       </div>
       <div className="text-sm flex flex-col text-[#fffffe] lg:px-20 ">

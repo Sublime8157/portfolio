@@ -14,6 +14,16 @@ export const sections = [
   "Contact",
 ];
 
+export const sectionIcons = {
+  About: "person-outline",
+  Technologies: "code-outline",
+  Experiences: "document-outline",
+  Projects: "file-tray-stacked-outline",
+  Trainings: "book-outline",
+  Contact: "send-outline",
+};
+
+
 export const sectionMap = {
   About,
   Technologies,
