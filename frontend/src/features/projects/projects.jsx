@@ -80,7 +80,7 @@ const Projects = () => {
                 (line, i) =>
                   line.trim() !== "" && (
                     <div key={i} className="mb-2 flex gap-4 items-start">
-                      <div className="z-10 text-sm lg:text-base flex flex-row items-start gap-2">
+                      <div className="z-10 text-sm flex flex-row items-start gap-2">
                         <FontAwesomeIcon
                           icon={faCircle}
                           className="text-[8px] mt-2 text-[#ff8906]"
