@@ -4,7 +4,7 @@ import Motion from "../utils/Motion";
 const about = () => {
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-lg lg:text-4xl text-center">ABOUT</h1>
+      <h1 className="text-lg lg:text-2  xl text-center">ABOUT</h1>
       <div className="p-0 lg:p-10 flex flex-col lg:flex-row lg:gap-0 gap-10 justify-between items-start">
         {aboutList.map((paragraph, index) => (
           <Motion

@@ -25,7 +25,7 @@ const Experiences = () => {
   const isRevealed = (index) => isLg || revealedIndices.has(index);
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 p-10">
       <Motion direction="top" className="mt-10 text-center text-lg md:text-2xl">
         EXPERIENCES
       </Motion>
