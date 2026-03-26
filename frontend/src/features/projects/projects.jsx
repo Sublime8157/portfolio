@@ -94,7 +94,7 @@ const Projects = () => {
             <ul className="flex flex-wrap flex-row gap-4">
               {list.technologies.map((tech, i) => (
                 <li key={i} className="lg:text-base text-sm">
-                  <div className="flex-wrap px-2 text-sm rounded-full border border-gray-600 text-gray-600">
+                  <div className="hoverTech flex-wrap px-2 text-sm rounded-full border border-gray-600 text-gray-600">
                     <span>{tech}</span>
                   </div>
                 </li>

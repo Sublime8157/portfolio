@@ -28,7 +28,7 @@ const technologies = () => {
               <li className="text-sm flex-wrap flex flex-row gap-2">
                 {item.lists.map((list, index) => {
                   return (
-                    <div className="text-gray-500  lg:text-base text-sm border p-1 px-2 rounded-full">
+                    <div className="text-gray-500 hoverTech lg:text-base text-sm border p-1 px-2 rounded-full">
                       {list}
                     </div>
                   );

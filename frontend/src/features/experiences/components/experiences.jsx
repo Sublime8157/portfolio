@@ -99,7 +99,7 @@ const Experiences = () => {
                     return (
                       <li
                         key={index}
-                        className="rounded-full border border-gray-600 p-1 text-xs"
+                        className="hoverTech rounded-full border border-gray-600 p-1 text-xs"
                       >
                         {item}
                       </li>

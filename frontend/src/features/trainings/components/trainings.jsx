@@ -29,7 +29,7 @@ const trainings = () => {
               <div className="text-gray-600  flex-wrap flex flex-row gap-2 items-center">
                 {training.techs.map((tech, index) => {
                   return (
-                    <div className="border rounded-full px-2 border-gray-600 ">
+                    <div className="hoverTech border rounded-full px-2 border-gray-600 ">
                       {tech}
                     </div>
                   );
