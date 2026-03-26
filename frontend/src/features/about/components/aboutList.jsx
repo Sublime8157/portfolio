@@ -1,7 +1,21 @@
+import { faLaptopCode, faGear, faBullseye } from "@fortawesome/free-solid-svg-icons";
+ 
 const aboutList = [
-  "Full-stack developer with experience in enterprise ERP systems, handling production issues, system maintenance, and feature enhancements. Strong background in backend development, database management, and writing clean, maintainable code.",
-  
-  "Continuously building modern web applications to improve problem-solving, architecture, and scalability skills. Focused on growing as a well-rounded developer through real-world, impactful projects."
+  {
+    about: "I Do", 
+    paragraph: "Full-stack developer focused on backend systems and real-world applications. Experienced in maintaining and enhancing enterprise ERP systems using Node.js, SQL, and modern frontend tools.",
+    icon: faLaptopCode
+  }, 
+  {
+    about: "I Contribute", 
+    paragraph: "Resolved critical payroll computation issues affecting 10,000+ employees in a live production environment. Optimized SQL queries, reducing report generation time by 40% and improving system performance.", 
+    icon: faGear
+  }, 
+  {
+    about: "I Focus", 
+    paragraph: "Building scalable and maintainable systems with a strong emphasis on performance and reliability. Continuously improving problem-solving, system design, and backend architecture through real-world projects.", 
+    icon: faBullseye
+  }
 ];
 
 export default aboutList;
