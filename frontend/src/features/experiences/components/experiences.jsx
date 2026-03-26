@@ -34,7 +34,11 @@ const Experiences = () => {
       </Motion>
       <ul className="pt-5 flex flex-col justify-between gap-14 items-center">
         {experienceList.map((exp, index) => (
-          <motion.button whileHover={{ scale: 1.01 }} whileTap={{ scale: 1 }} className="">
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 1 }}
+            className=""
+          >
             <Motion
               direction="bottom"
               key={index}
@@ -80,7 +84,10 @@ const Experiences = () => {
                       line.trim() !== "" && (
                         <div key={i} className="mb-2 flex gap-4 items-start">
                           <div className="z-10 text-xs mt-1">
-                            <FontAwesomeIcon icon={faCircle} className="text-[8px] text-[#ff8906]" />
+                            <FontAwesomeIcon
+                              icon={faCircle}
+                              className="text-[8px] text-[#ff8906]"
+                            />
                           </div>
                           <p>{line}</p>
                         </div>
