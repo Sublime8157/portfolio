@@ -1,4 +1,4 @@
-import { faCode, faDatabase, faGrip } from "@fortawesome/free-solid-svg-icons";
+import { faCode, faDatabase, faGrip, faWrench } from "@fortawesome/free-solid-svg-icons";
 
 const tech = [
   {
@@ -19,7 +19,7 @@ const tech = [
 export const icons = {
   Frontend: faCode, 
   Backend: faDatabase, 
-  Tools: faGrip
+  Tools: faWrench
 }
 
 export default tech;

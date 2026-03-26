@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const technologies = () => {
   return (
-    <div className="p-5">
+    <div className="">
       <Motion direction="top" className="text-lg lg:text-2xl text-center">
         TECHNOLOGIES
       </Motion>
@@ -19,7 +19,7 @@ const technologies = () => {
           >
             <div className="w-full self-start">
               <h1 className="text-left mb-2 text-[#a7a9be] flex flex-row gap-2 items-center">
-                <FontAwesomeIcon icon={icons[item.tech]} />
+                <FontAwesomeIcon icon={icons[item.tech]} className="text-[#ff8906]" />
                 {item.tech.toUpperCase()}
               </h1>
               <hr className="text-gray-800"></hr>
