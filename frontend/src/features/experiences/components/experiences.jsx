@@ -38,10 +38,10 @@ const Experiences = () => {
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 1 }}
             className=""
+            key={index}
           >
             <Motion
               direction="bottom"
-              key={index}
               className="flex gap-4 flex-col rounded shadow-md shadow-gray-600 p-4 text-left"
             >
               <div className="flex flex-row justify-between items-center">
@@ -60,14 +60,14 @@ const Experiences = () => {
                   </div>
                 </div>
                 {!isLg && (
-                  <Button variant="plain" onClick={() => toggleReveal(index)}>
+                  <div className="cursor-pointer" onClick={() => toggleReveal(index)}>
                     <ion-icon
                       name={
                         isRevealed(index) ? "remove-outline" : "add-outline"
                       }
                       class="text-2xl"
                     ></ion-icon>
-                  </Button>
+                  </div>
                 )}
               </div>
               <div

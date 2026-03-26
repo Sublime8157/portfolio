@@ -75,7 +75,7 @@ const Projects = () => {
                 {list.name} - {list.role}
               </div>
             </h6>
-            <p className="lg:text-base text-sm text-[#a7a9be] whitespace-pre-line">
+            <div className="lg:text-base text-sm text-[#a7a9be] whitespace-pre-line">
               {list.paragraph.split("\n").map(
                 (line, i) =>
                   line.trim() !== "" && (
@@ -90,7 +90,7 @@ const Projects = () => {
                     </div>
                   ),
               )}
-            </p>
+            </div>
             <ul className="flex flex-wrap flex-row gap-4">
               {list.technologies.map((tech, i) => (
                 <li key={i} className="lg:text-base text-sm">

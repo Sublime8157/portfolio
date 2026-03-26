@@ -5,7 +5,6 @@ import Nav from "./navigation/nav.jsx";
 const index = () => {
   const today = new Date();
   const year = today.getFullYear();
-
   return (
     <div className="overflow-hidden">
       <div>

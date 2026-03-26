@@ -1,55 +1,60 @@
-import ContactList from "./components/contactList";
 import InputText from "../utils/InputText";
 import InputTextArea from "../utils/InputTextArea.jsx";
 import Button from "../utils/Button.jsx";
 import Motion from "../utils/Motion.jsx";
-import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+import { contactList } from "../contact/components/contactList.jsx";
 
 const contacts = () => {
   const handleLinkClick = (link) => {
     if (link.includes("@")) {
       window.open(`mailto:${link}`, "_self");
-    } else {
+    } else if(link.includes("+")) {
+      window.open(`tel:${link}`, "_self")
+    }
+   else {
       window.open(link, "_blank");
     }
   };
   return (
     <div className="">
-      <Motion direction="top" className="text-center text-lg md:text-2xl">
-        CONTACT
-      </Motion>
-      <div className="items-center lg:p-10 pt-5 gap-8 flex lg:flex-row flex-col justify-evenly">
+      <div className="items-center lg:p-10 pt-5 flex lg:flex-row flex-col justify-evenly">
         <div>
-          {ContactList.map((contact, index) => (
-            <div
-              key={index}
-              className="lg:text-base text-xs flex lg:flex-row flex-col w-full lg:justify-start justify-center lg:items-start items-center"
+          <div className="p-5 flex flex-col gap-4">
+            <Motion
+              className="text-3xl lg:text-5xl text-gray-400 footer"
+              style={{ fontStyle: "italic" }}
             >
-              <Motion
-                delay={index * 0.05}
-                className="lg:block flex flex-col justify-center items-center mb-2"
-              >
-                <Button
-                  variant=""
-                  className="cursor-pointer w-60 px-2 py-2 justify-between border text-gray-600! border-gray-700! flex flex-row gap-2 items-center"
-                  onClick={() => handleLinkClick(contact.info)}
-                >
-                  <div>
-                    <ion-icon name={contact.icon}></ion-icon>
-                  </div>
-                  <p className="">{contact.type}</p>
-                  <FontAwesomeIcon icon={faLocationArrow} />
-                </Button>
-              </Motion>
+              Let's work it out what's on your mind!
+            </Motion>
+            <Motion
+              className="text-base lg:text-lg text-gray-400"
+              style={{ fontStyle: "italic", fontWeight: "800" }}
+            >
+              Feel free to reach out
+            </Motion>
+            <div className="text-gray-600 flex-wrap flex-row gap-4 lg:gap-8 flex">
+              {contactList.map((list, index) => {
+                return (
+                  <button key={index} onClick={() => handleLinkClick(list.link)}>
+                    <Motion className=" cursor-pointer hover:underline flex items-center flex-row gap-2">
+                      <div className="flex flex-row gap-1">
+                        <ion-icon
+                          name={list.icon}
+                          class="text-base lg:text-lg"
+                        ></ion-icon>
+                        <div>{list.type}</div>
+                      </div>
+                      <div className="-rotate-45 text-base lg:text-lg">
+                        <ion-icon name="arrow-forward"></ion-icon>
+                      </div>
+                    </Motion>
+                  </button>
+                );
+              })}
             </div>
-          ))}
+          </div>
         </div>
-        <Motion
-          direction="right"
-          className="flex flex-col gap-2 lg:p-0 w-12/12 lg:w-100"
-        >
+        <Motion className="flex flex-col gap-2 lg:p-0 w-12/12 lg:w-100">
           <InputText name="name" placeholder="Name (Optional)" />
           <InputText name="subject" placeholder="Subject" />
           <InputTextArea

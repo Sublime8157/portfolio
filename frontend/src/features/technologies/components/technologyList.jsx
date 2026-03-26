@@ -1,4 +1,4 @@
-import { faCode, faDatabase, faGrip, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faCode, faDatabase,  faWrench } from "@fortawesome/free-solid-svg-icons";
 
 const tech = [
   {

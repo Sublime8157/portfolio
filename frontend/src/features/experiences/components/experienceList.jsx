@@ -19,7 +19,7 @@ const experiences = [
     tenure: "October 2023 - February 2024",
     paragraph:
       "Automated key workflows and processes for the company website using Go High Level, improving marketing automation, lead capture, and customer engagement. \n \n  Collaborated with the development team to design and build the front-end of the company website, ensuring a responsive and user-friendly interface. \n \n  Participated in meetings with international clients to gather project specifications and requirements, helping translate business needs into technical implementation for the website.",
-      stacks: ["Go High Level","Airtable","Zapier"]
+    stacks: ["Go High Level", "Airtable", "Zapier"],
   },
 ];
 
