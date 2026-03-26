@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const technologies = () => {
   return (
-    <div className="p-10">
+    <div className="p-5">
       <Motion direction="top" className="text-lg lg:text-2xl text-center">
         TECHNOLOGIES
       </Motion>
-      <div className="mt-10 flex flex-col flex-wrap lg:justify-around gap-4 items-start">
+      <div className="mt-10 flex flex-col flex-wrap lg:justify-around gap-8 items-start">
         {technologyList.map((item, index) => (
           <motion.button
             whileHover={{ scale: 1.01 }}
@@ -25,10 +25,10 @@ const technologies = () => {
               <hr className="text-gray-800"></hr>
             </div>
             <Motion delay={index * 0.03}>
-              <li className="text-sm flex flex-row gap-2">
+              <li className="text-sm flex-wrap flex flex-row gap-2">
                 {item.lists.map((list, index) => {
                   return (
-                    <div className="text-gray-500  border p-1 px-2 rounded-full">
+                    <div className="text-gray-500  lg:text-base text-sm border p-1 px-2 rounded-full">
                       {list}
                     </div>
                   );
