@@ -4,7 +4,7 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
@@ -12,11 +12,69 @@ datasource db {
   provider = "postgresql"
 }
 
-model HeroSection {
-  id Int @id @default(autoincrement())
-  paragraph String? 
-  profil_image String
-
-  @@map("hero_section")
+model Hero {
+  id        Int    @id @default(autoincrement())
+  title     String
+  image_url String
+  paragraph String
 }
 
+model About {
+  id           Int    @id @default(autoincrement())
+  i_do         String
+  i_contribute String
+  i_focus      String
+}
+
+model Technologies {
+  id    Int            @id @default(autoincrement())
+  stack String
+  type  technologyType
+}
+
+model Experiences {
+  id        Int    @id @default(autoincrement())
+  company   String
+  title     String
+  tenure    String
+  paragraph String
+  stack     String
+}
+
+model Projects {
+  id        Int    @id @default(autoincrement())
+  name      String
+  role      String
+  paragraph String
+  stack     String
+  repo_link String
+  image_url String
+}
+
+model Trainings {
+  id        Int    @id @default(autoincrement())
+  name      String
+  tenure    String
+  paragraph String
+  stack     String
+}
+
+model Footer {
+  id      Int        @id @default(autoincrement())
+  poster  String
+  contact Contacts[]
+}
+
+model Contacts {
+  id       Int     @id @default(autoincrement())
+  name     String
+  link     String
+  footerId Int?
+  footer   Footer? @relation(fields: [footerId], references: [id])
+}
+
+enum technologyType {
+  FRONTEND
+  BACKEND
+  TOOLS
+}
