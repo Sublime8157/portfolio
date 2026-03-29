@@ -3,11 +3,10 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+// should only be adding 1 data for hero section
+router.get("/:id", async (req, res) => {
   try {
-    const hero = await prisma.hero.findFirst({
-      where: { id: 1 },
-    });
+    const hero = await prisma.hero.findFirst();
     res.json(hero);
   } catch (error) {
     console.error("Error fetching hero section:", error);
@@ -18,22 +17,49 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const data = {
-    title: "Test_Title",
-    paragraph: "Test_Paragraph",
-    image_url: "https://example.com/image.jpg",
-  };
-
+  const data = req.body;
   try {
-    const newData = await prisma.hero.create({
+    const newHero = await prisma.hero.create({
       data: data,
     });
-    res.json(newData);
+    res.json(newHero);
   } catch (error) {
     console.error("Error creating hero section:", error);
     res
       .status(500)
       .json({ error: "An error occurred while creating the hero section." });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    await prisma.hero.delete({
+      where: { id: parseInt(id) },
+    });
+    res.json({ message: "Hero section deleted successfully." });
+  } catch (error) {
+    console.error("Error deleting hero section:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while deleting the hero section." });
+  }
+});
+
+router.patch("/:id", async (req, res) => {
+  const id = req.params.id;
+  const data = req.body;
+  try {
+    const updatedData = await prisma.hero.update({
+      where: { id: parseInt(id) },
+      data: data,
+    });
+    res.json(updatedData);
+  } catch (error) {
+    console.error("Error updating hero section:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while updating the hero section." });
   }
 });
 

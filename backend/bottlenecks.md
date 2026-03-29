@@ -8,3 +8,8 @@ List to consider upon prisma setup
 Notes:
 
 - env should load on top level specifically at server.js
+
+PUT vs PATCH METHODS
+
+- PUT updated all the row, so when you pass only single column the rest rows will become null
+- PATCH pass only the column to be updated
