@@ -24,7 +24,7 @@ const contacts = () => {
               className="text-3xl lg:text-5xl text-gray-400 footer"
               style={{ fontStyle: "italic" }}
             >
-              Let's work it out what's on your mind!
+              Let's work it out, what's on your mind?
             </Motion>
             <Motion
               className="text-base lg:text-lg text-gray-400"
