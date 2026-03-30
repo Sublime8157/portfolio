@@ -33,12 +33,19 @@ model Technologies {
 }
 
 model Experiences {
-  id        Int    @id @default(autoincrement())
+  id        Int               @id @default(autoincrement())
   company   String
   title     String
   tenure    String
   paragraph String
-  stack     String
+  stack     ExperienceStack[] // This is the column that define the connection between ExperienceStack, array means multiple ExperienceStack can be connected to one Experiences
+}
+
+model ExperienceStack {
+  id           Int         @id @default(autoincrement())
+  experienceId Int
+  experience   Experiences @relation(fields: [experienceId], references: [id], onDelete: Cascade) // This is not a column This is just the way prisma to define the relation between two tables
+  technology   String
 }
 
 model Projects {
