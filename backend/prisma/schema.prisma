@@ -66,11 +66,18 @@ model ProjectStack {
 }
 
 model Trainings {
-  id        Int    @id @default(autoincrement())
+  id        Int             @id @default(autoincrement())
   name      String
   tenure    String
   paragraph String
-  stack     String
+  stack     TrainingStack[]
+}
+
+model TrainingStack {
+  id         Int       @id @default(autoincrement())
+  trainingId Int
+  training   Trainings @relation(fields: [trainingId], references: [id], onDelete: Cascade)
+  technology String
 }
 
 model Footer {
