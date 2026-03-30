@@ -25,10 +25,10 @@ router.post("/", async (req, res) => {
   try {
     const newExperience = await prisma.experiences.create({
       data: {
-        company: company,
-        title: title,
-        tenure: tenure,
-        paragraph: paragraph,
+        company,
+        title,
+        tenure,
+        paragraph,
       },
     });
     res.status(201).json(newExperience);

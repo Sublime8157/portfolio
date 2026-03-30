@@ -49,13 +49,20 @@ model ExperienceStack {
 }
 
 model Projects {
-  id        Int    @id @default(autoincrement())
+  id        Int            @id @default(autoincrement())
   name      String
   role      String
   paragraph String
-  stack     String
   repo_link String
   image_url String
+  stack     ProjectStack[]
+}
+
+model ProjectStack {
+  id         Int      @id @default(autoincrement())
+  projectId  Int
+  project    Projects @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology String
 }
 
 model Trainings {
