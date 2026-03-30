@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
         stack: true, // Include related experience_stack data
       },
     });
-    res.json(experiences);
+    res.status(200).json(experiences);
   } catch (error) {
     console.error("Error fetching experiences:", error);
     res
@@ -21,15 +21,10 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { company, title, tenure, paragraph } = req.body;
+  const data = req.body;
   try {
     const newExperience = await prisma.experiences.create({
-      data: {
-        company,
-        title,
-        tenure,
-        paragraph,
-      },
+      data: data,
     });
     res.status(201).json(newExperience);
   } catch (error) {
@@ -58,16 +53,11 @@ router.delete("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { company, title, tenure, paragraph } = req.body;
+  const data = req.body;
   try {
     const updatedExperience = await prisma.experiences.update({
       where: { id: parseInt(id) },
-      data: {
-        company: company,
-        title: title,
-        tenure: tenure,
-        paragraph: paragraph,
-      },
+      data: data,
     });
     res.status(200).json(updatedExperience);
   } catch (error) {

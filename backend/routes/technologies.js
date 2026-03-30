@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const technologies = await prisma.technologies.findMany();
-    res.json(technologies);
+    res.status(200).json(technologies);
   } catch (error) {
     console.error("Error fetching technologies:", error);
     res
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     const newTechnology = await prisma.technologies.create({
       data: data,
     });
-    res.json(newTechnology);
+    res.status(201).json(newTechnology);
   } catch (error) {
     console.error("Error creating technology:", error);
     res
@@ -36,7 +36,7 @@ router.delete("/:id", async (req, res) => {
     await prisma.technologies.delete({
       where: { id: parseInt(id) },
     });
-    res.json({ message: "Technology deleted successfully." });
+    res.status(200).json({ message: "Technology deleted successfully." });
   } catch (error) {
     console.error("Error deleting technology:", error);
     res
@@ -53,7 +53,7 @@ router.put("/:id", async (req, res) => {
       where: { id: parseInt(id) },
       data: data,
     });
-    res.json(updatedTechnology);
+    res.status(200).json(updatedTechnology);
   } catch (error) {
     console.error("Error updating technology:", error);
     res

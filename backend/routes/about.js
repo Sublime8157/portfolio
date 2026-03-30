@@ -4,11 +4,12 @@ import express from "express";
 const router = express.Router();
 
 router.get("/:id", async (req, res) => {
+  const id = req.params.id;
   try {
     const about = await prisma.about.findFirst({
-      where: { id: parseInt(req.params.id) },
+      where: { id: parseInt(id) },
     });
-    res.json(about);
+    res.status(200).json(about);
   } catch (error) {
     console.error("Error fetching about section:", error);
     res
@@ -23,7 +24,7 @@ router.post("/", async (req, res) => {
     const newAbout = await prisma.about.create({
       data: data,
     });
-    res.json(newAbout);
+    res.status(201).json(newAbout);
   } catch (error) {
     console.error("Error creating about section:", error);
     res
@@ -38,7 +39,7 @@ router.delete("/:id", async (req, res) => {
     await prisma.about.delete({
       where: { id: parseInt(id) },
     });
-    res.json({ message: "About section deleted successfully." });
+    res.status(200).json({ message: "About section deleted successfully." });
   } catch (error) {
     console.error("Error deleting about section:", error);
     res
@@ -55,7 +56,7 @@ router.put("/:id", async (req, res) => {
       where: { id: parseInt(id) },
       data: data,
     });
-    res.json(updatedData);
+    res.status(200).json(updatedData);
   } catch (error) {
     console.error("Error updating about section:", error);
     res

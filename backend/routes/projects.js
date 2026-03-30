@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
         stack: true,
       },
     });
-    res.json(projects);
+    res.status(200).json(projects);
   } catch (error) {
     console.error("Error fetching projects:", error);
     res
@@ -22,16 +22,10 @@ router.get("/", async (req, res) => {
 
 // Create a new project
 router.post("/", async (req, res) => {
-  const { name, role, paragraph, repo_link, image_url } = req.body;
+  const data = req.body;
   try {
     const newProject = await prisma.projects.create({
-      data: {
-        name,
-        role,
-        paragraph,
-        repo_link,
-        image_url,
-      },
+      data: data,
     });
     res.status(201).json(newProject);
   } catch (error) {
@@ -59,17 +53,11 @@ router.delete("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { name, role, paragraph, repo_link, image_url } = req.body;
+  const data = req.body;
   try {
     const updatedProject = await prisma.projects.update({
       where: { id: parseInt(id) },
-      data: {
-        name,
-        role,
-        paragraph,
-        repo_link,
-        image_url,
-      },
+      data: data,
     });
     res.status(200).json(updatedProject);
   } catch (error) {
