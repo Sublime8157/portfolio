@@ -3,8 +3,8 @@ import { TypeAnimation } from "react-type-animation";
 import Paragraph from "../components/paragraph.jsx";
 import Button from "../../utils/Button.jsx";
 import Motion from "../../utils/Motion.jsx";
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import Editor from "../../../components/tiptap/Editor.jsx";
 
 const Hero = () => {
   const [revealRole, setRevealRole] = useState(false);
@@ -36,9 +36,10 @@ const Hero = () => {
         duration={1}
         className="flex flex-col gap-8 lg:w-6/12 w-12/12"
       >
-        <p className="text-sm text-[#88888b] tracking-widest">
-          FREELANCE / FULL-TIME · RIZAL, PH
-        </p>
+        <Editor
+          className="text-sm text-[#88888b] tracking-widest"
+          content="FREELANCE / FULL-TIME · RIZAL, PH"
+        ></Editor>
         <h1 className="lg:text-5xl text-3xl">
           {!revealRole ? (
             "Software Developer"
