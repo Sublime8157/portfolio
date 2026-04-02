@@ -18,7 +18,7 @@ const index = () => {
         <Nav />
       </div>
       <div
-        className={`flex flex-row items-center bottom-0 left-0 fixed ease-in-out transition-all ${!hideToolbar ? "-translate-x-[calc(100%-50px)]" : ""}`}
+        className={`flex flex-row items-end pb-4 bottom-0 left-0 fixed ease-in-out transition-all ${!hideToolbar ? "-translate-x-[calc(100%-50px)]" : ""}`}
         style={{ transitionDuration: "500ms" }}
       >
         <Toolbar />
