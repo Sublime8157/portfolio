@@ -58,11 +58,7 @@ const Hero = () => {
                      hover:border-gray-300 bg-transparent"
           style={{ transitionDuration: "300ms" }}
         >
-          <FontAwesomeIcon
-            icon={isEditing ? faSave : faPenToSquare}
-            className="mr-1"
-          />
-          {isEditing ? "Save" : "Edit"}
+          <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />
         </button>
       )}
       <Motion
@@ -98,6 +94,18 @@ const Hero = () => {
                       onUpdateButton={updateButton}
                     />
                   ))}
+                {isEditing && (
+                  <div className="ms-4 flex gap-2">
+                    <button
+                      onClick={addTextBlock}
+                      className="text-xs w-48 cursor-pointer text-gray-500 border border-dashed border-gray-600 
+                           rounded px-3 py-1 hover:text-gray-300 hover:border-gray-400 
+                           transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Button Blocks — side by side */}
@@ -120,22 +128,14 @@ const Hero = () => {
 
           {/* Add Block Controls — only in edit mode */}
           {isEditing && (
-            <div className="flex gap-2 mt-4">
-              <button
-                onClick={addTextBlock}
-                className="text-xs text-gray-500 border border-dashed border-gray-600 
-                           rounded px-3 py-1 hover:text-gray-300 hover:border-gray-400 
-                           transition-colors"
-              >
-                + Text
-              </button>
+            <div className="ms-4 flex gap-2 mt-4">
               <button
                 onClick={addButtonBlock}
-                className="text-xs text-gray-500 border border-dashed border-gray-600 
+                className="text-xs w-64 cursor-pointer text-gray-500 border border-dashed border-gray-600 
                            rounded px-3 py-1 hover:text-gray-300 hover:border-gray-400 
                            transition-colors"
               >
-                + Button
+                +
               </button>
             </div>
           )}

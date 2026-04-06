@@ -2,6 +2,8 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Editor from "../../../components/tiptap/Editor.jsx";
 import Button from "../../utils/Button.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 const HeroBlock = ({
   block,
@@ -112,9 +114,9 @@ const HeroBlock = ({
         <button
           onClick={() => onDelete(block.id)}
           className="opacity-0 group-hover:opacity-100 transition-opacity
-                   text-red-400 hover:text-red-300 text-xs mt-1"
+                   text-red-400 hover:text-red-300 text-xs mt-1 cursor-pointer"
         >
-          ✕
+          <FontAwesomeIcon icon={faTrashCan} />
         </button>
       )}
     </div>
