@@ -6,22 +6,9 @@ import { faS } from "@fortawesome/free-solid-svg-icons";
 import Editor from "../../../components/tiptap/Editor.jsx";
 import Motion from "../../utils/Motion.jsx";
 import { faGripVertical, faTrash } from "@fortawesome/free-solid-svg-icons";
+import resolveIcon from "../../../hooks/resolveIcon.js";
 
 library.add(faS);
-
-// resolves camelcase icon name string to fontawersome icon object
-const resolveIcon = (iconName) => {
-  if (typeof iconName !== "string") return "faGear";
-
-  // Convert camelCase "faLaptopCode" → kebab-case "laptop-code"
-  const kebab = iconName
-    .replace(/^fa/, "")
-    .replace(/([A-Z])/g, "-$1")
-    .toLowerCase()
-    .replace(/^-/, "");
-
-  return findIconDefinition({ prefix: "fas", iconName: kebab });
-};
 
 const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
