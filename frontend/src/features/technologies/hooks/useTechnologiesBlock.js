@@ -25,12 +25,12 @@ const initialCards = [
   createCardBlock(
     "Backend",
     ["NodeJS", "Ruby on Rails", "SQL Server", "MySQL", "Laravel"],
-    "faCode",
+    "faDatabase",
   ),
   createCardBlock(
     "Tools",
     ["Git", "Sourcetree", "Figma", "Photoshop"],
-    "faCode",
+    "faWrench",
   ),
 ];
 

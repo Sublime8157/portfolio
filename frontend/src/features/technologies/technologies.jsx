@@ -11,9 +11,9 @@ import {
 } from "@dnd-kit/sortable";
 import { useState } from "react";
 import { useTechnologiesBlock } from "./hooks/useTechnologiesBlock.js";
-import TechnologiesBLock from "./components/technologiesBlock.jsx";
 import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TechnologiesBlock from "./components/TechnologiesBlock.jsx";
 
 const Technologies = () => {
   const {
@@ -68,17 +68,19 @@ const Technologies = () => {
             strategy={verticalListSortingStrategy}
           >
             <div className="mt-10 flex flex-col flex-wrap lg:justify-around gap-8 items-start">
-              {cards.map((card) => (
-                <TechnologiesBLock
-                  key={card.id}
-                  card={card}
-                  isEditing={isEditing}
-                  onDelete={deleteCard}
-                  onUpdate={updateCard}
-                />
-              ))}
+              {cards.map((card) => {
+                return (
+                  <TechnologiesBlock
+                    key={card.id}
+                    card={card}
+                    isEditing={isEditing}
+                    onDelete={deleteCard}
+                    onUpdate={updateCard}
+                  />
+                );
+              })}
               {isEditing && (
-                <div className="h-full flex self-center">
+                <div className="h-full w-full flex self-center">
                   <button
                     onClick={addCard}
                     className="h-20 w-full cursor-pointer text-gray-500 border border-dashed border-gray-600 
