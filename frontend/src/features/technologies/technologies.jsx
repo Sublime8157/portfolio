@@ -25,6 +25,9 @@ const Technologies = () => {
     deleteCard,
     updateCard,
     reorderCards,
+    addTag,
+    removeTag,
+    updateTag,
   } = useTechnologiesBlock();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -76,6 +79,9 @@ const Technologies = () => {
                     isEditing={isEditing}
                     onDelete={deleteCard}
                     onUpdate={updateCard}
+                    onAddTag={addTag}
+                    onRemoveTag={removeTag}
+                    onUpdateTag={updateTag}
                   />
                 );
               })}

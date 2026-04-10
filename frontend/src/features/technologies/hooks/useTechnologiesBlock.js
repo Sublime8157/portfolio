@@ -2,7 +2,6 @@ import { useState } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import useAboutBlocks from "../../about/hooks/useAboutBlock";
 
 library.add(fas);
 
@@ -49,7 +48,37 @@ export const useTechnologiesBlock = () => {
 
   const updateCard = (id, field, value) => {
     setCards((prev) =>
-      prev.nap((c) => (c.id === id ? { ...c, [field]: value } : c)),
+      prev.map((c) => (c.id === id ? { ...c, [field]: value } : c)),
+    );
+  };
+
+  // actions for list
+  const addTag = (id) => {
+    setCards((prev) =>
+      prev.map((c) => (c.id === id ? { ...c, list: [...c.list, "New"] } : c)),
+    );
+  };
+
+  const removeTag = (id, tagIndex) => {
+    setCards((prev) =>
+      prev.map((c) =>
+        c.id === id
+          ? { ...c, list: c.list.filter((_, i) => i !== tagIndex) }
+          : c,
+      ),
+    );
+  };
+
+  const updateTag = (id, tagIndex, value) => {
+    setCards((prev) =>
+      prev.map((c) =>
+        c.id === id
+          ? {
+              ...c,
+              list: c.list.map((tag, i) => (i === tagIndex ? value : tag)),
+            }
+          : c,
+      ),
     );
   };
 
@@ -70,7 +99,10 @@ export const useTechnologiesBlock = () => {
     deleteCard,
     updateCard,
     reorderCards,
+    addTag,
+    removeTag,
+    updateTag,
   };
 };
 
-export default useAboutBlocks;
+export default useTechnologiesBlock;

@@ -10,7 +10,15 @@ import Motion from "../../utils/Motion";
 
 library.add(faS);
 
-const TechnologiesBlock = ({ card, isEditing, onDelete, onUpdate }) => {
+const TechnologiesBlock = ({
+  card,
+  isEditing,
+  onDelete,
+  onUpdate,
+  onAddTag,
+  onRemoveTag,
+  onUpdateTag,
+}) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: card.id });
 
@@ -48,22 +56,69 @@ const TechnologiesBlock = ({ card, isEditing, onDelete, onUpdate }) => {
         <div className="w-full self-start">
           <h1 className="text-left mb-2 text-[#a7a9be] flex flex-row gap-2 items-center">
             <FontAwesomeIcon icon={icon} className="text-[#ff8906]" />
-            {card.title.toUpperCase()}
+            {isEditing ? (
+              <div className="flex flex-col gap-1 w-full">
+                <Editor
+                  content={card.title.toUpperCase()}
+                  onUpdate={(html) => onUpdate(card.id, "title", html)}
+                ></Editor>
+                <input
+                  placeholder="Icon name e.g. faCode"
+                  onChange={(e) =>
+                    onUpdate(card.id, "iconName", e.target.value)
+                  }
+                  value={card.iconName}
+                  className="bg-transparent border-b border-gray-600 text-gray-500 
+                           text-xs outline-none w-full"
+                ></input>
+              </div>
+            ) : (
+              <div
+                className="text-sm"
+                dangerouslySetInnerHTML={{ __html: card.title.toUpperCase() }}
+              />
+            )}
           </h1>
           <hr className="text-gray-800"></hr>
         </div>
         <Motion>
           <li className="text-sm flex-wrap flex flex-row gap-2">
-            {card.list.map((list, index) => {
-              return (
-                <div
-                  key={index}
-                  className="text-gray-500 hoverTech lg:text-base text-sm border p-1 px-2 rounded-full"
-                >
-                  {list}
-                </div>
-              );
-            })}
+            {card.list.map((list, index) => (
+              <Motion
+                key={index}
+                className={`text-gray-500 lg:text-base text-sm border p-1 px-2 rounded-full ${isEditing ? "" : "hoverTech"}`}
+              >
+                {isEditing ? (
+                  <>
+                    {" "}
+                    <input
+                      value={list}
+                      onChange={(e) =>
+                        onUpdateTag(card.id, index, e.target.value)
+                      }
+                      className="bg-transparent outline-none text-gray-400 text-sm w-20"
+                    />
+                    <button
+                      onClick={() => onRemoveTag(card.id, index)}
+                      className="cursor-pointer text-red-400 hover:text-red-300 text-xs leading-none
+                    "
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </>
+                ) : (
+                  list
+                )}
+              </Motion>
+            ))}
+            {isEditing && (
+              <button
+                onClick={() => onAddTag(card.id)}
+                className="text-gray-500 w-20 hoverTech lg:text-base text-sm border p-1 px-2 rounded-full"
+              >
+                +
+              </button>
+            )}
           </li>
         </Motion>
       </Motion>
