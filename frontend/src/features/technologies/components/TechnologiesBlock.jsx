@@ -1,7 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { findIconDefinition, library } from "@fortawesome/fontawesome-svg-core";
+import { library } from "@fortawesome/fontawesome-svg-core";
 import { faS } from "@fortawesome/free-solid-svg-icons";
 import Editor from "../../../components/tiptap/Editor";
 import { faGripVertical, faTrash } from "@fortawesome/free-solid-svg-icons";

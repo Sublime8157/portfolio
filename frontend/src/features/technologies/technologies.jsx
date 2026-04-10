@@ -1,6 +1,17 @@
-import technologyList, { icons } from "./components/technologyList";
-import Motion from "../utils/Motion";
-import { motion } from "framer-motion";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { useState } from "react";
+import { useTechnologiesBlock } from "./hooks/useTechnologiesBlock.js";
+import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TechnologiesBlock from "./components/TechnologiesBlock.jsx";
 
