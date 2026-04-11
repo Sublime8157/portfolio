@@ -1,6 +1,6 @@
 import About from "../../about/about.jsx";
 import Technologies from "../../technologies/technologies.jsx";
-import Experiences from "../../experiences/components/experiences.jsx";
+import Experiences from "../../experiences/experiences.jsx";
 import Projects from "../../projects/projects.jsx";
 import Trainings from "../../trainings/components/trainings.jsx";
 import Contacts from "../../contact/contacts.jsx";
@@ -22,7 +22,6 @@ export const sectionIcons = {
   Trainings: "book-outline",
   Contact: "send-outline",
 };
-
 
 export const sectionMap = {
   About,
