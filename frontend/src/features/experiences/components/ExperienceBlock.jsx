@@ -219,7 +219,7 @@ const ExperienceBlock = ({
                   onClick={() => onAddTag(exp.id)}
                   className="rounded-full border border-dashed border-gray-600 
                              p-1 px-2 text-xs text-gray-500 hover:text-gray-300 
-                             hover:border-gray-400 transition-colors"
+                             hover:border-gray-400 transition-colors cursor-pointer"
                 >
                   + Add
                 </button>

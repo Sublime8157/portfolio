@@ -5,7 +5,8 @@ import { findIconDefinition, library } from "@fortawesome/fontawesome-svg-core";
 import { faS } from "@fortawesome/free-solid-svg-icons";
 import Editor from "../../../components/tiptap/Editor.jsx";
 import Motion from "../../utils/Motion.jsx";
-import { faGripVertical, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import resolveIcon from "../../../hooks/resolveIcon.js";
 
 library.add(faS);
@@ -34,7 +35,7 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
           className="absolute -top-5 left-0 text-gray-500 hover:text-gray-300 
                      cursor-grab text-xs select-none touch-none"
         >
-          <FontAwesomeIcon icon={faGripVertical} />
+          <FontAwesomeIcon icon={faGripVertical} /> Drag
         </button>
       )}
 
@@ -44,7 +45,7 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
           className="cursor-pointer absolute -top-5 right-0 text-red-400 
                      hover:text-red-300 text-xs"
         >
-          <FontAwesomeIcon icon={faTrash} />
+          <FontAwesomeIcon icon={faTrashCan} /> Remove
         </button>
       )}
 

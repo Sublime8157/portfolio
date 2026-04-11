@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faS } from "@fortawesome/free-solid-svg-icons";
 import Editor from "../../../components/tiptap/Editor";
-import { faGripVertical, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import resolveIcon from "../../../hooks/resolveIcon";
 import Motion from "../../utils/Motion";
 
@@ -39,7 +40,7 @@ const TechnologiesBlock = ({
           className="absolute -top-5 left-0 text-gray-500 hover:text-gray-300
                          cursor-grab text-xs select-none touch-none"
         >
-          <FontAwesomeIcon icon={faGripVertical} />
+          <FontAwesomeIcon icon={faGripVertical} /> Drag
         </button>
       )}
       {/* remove button */}
@@ -49,7 +50,7 @@ const TechnologiesBlock = ({
           className="cursor-pointer absolute -top-5 right-0 text-red-400
                      hover:text-red-300 text-xs"
         >
-          <FontAwesomeIcon icon={faTrash} />
+          <FontAwesomeIcon icon={faTrashCan} /> Remove
         </button>
       )}
       <Motion className="justify-start w-full items-start flex flex-col gap-2 shadow-md shadow-gray-700 rounded p-4">
@@ -100,10 +101,10 @@ const TechnologiesBlock = ({
                     />
                     <button
                       onClick={() => onRemoveTag(card.id, index)}
-                      className="cursor-pointer text-red-400 hover:text-red-300 text-xs leading-none
+                      className="font-bold cursor-pointer text-red-400 hover:text-red-300 text-xs leading-none
                     "
                     >
-                      <FontAwesomeIcon icon={faTrash} />
+                      X
                     </button>
                   </>
                 ) : (
@@ -114,9 +115,10 @@ const TechnologiesBlock = ({
             {isEditing && (
               <button
                 onClick={() => onAddTag(card.id)}
-                className="text-gray-500 w-20 hoverTech lg:text-base text-sm border p-1 px-2 rounded-full"
+                className="text-gray-500 w-20 cursor-pointer text-sm border border-dashed p-1 px-2 rounded-full hover:text-gray-300 
+                             hover:border-gray-400"
               >
-                +
+                + Add
               </button>
             )}
           </li>

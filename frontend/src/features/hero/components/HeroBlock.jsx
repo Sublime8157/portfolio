@@ -33,7 +33,7 @@ const HeroBlock = ({
           {...listeners}
           className="opacity-0 group-hover:opacity-100 transition-opacity 
                    cursor-grab mt-1 text-gray-500 hover:text-gray-300 
-                   select-none touch-none"
+                   select-none touch-none text-xs"
         >
           ⠿
         </button>
