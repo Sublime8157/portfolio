@@ -3,7 +3,8 @@ import Hero from "./hero/pages/hero.jsx";
 import Nav from "./navigation/nav.jsx";
 import { useEditorContext } from "../context/EditorContext.jsx";
 import Toolbar from "../components/tiptap/Toolbar.jsx";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Loading from "../components/Loading.jsx";
 
 const index = () => {
   const { toolBarVisible, unregisterEditor, activeEditor } = useEditorContext();
@@ -32,8 +33,28 @@ const index = () => {
     return () => document.removeEventListener("mousedown", handleMouseDown);
   }, [toolBarVisible, activeEditor]);
 
+  // set loading
+  const [showLoading, setShowLoading] = useState(true);
+  useEffect(() => {
+    const loadingTime = setTimeout(() => {
+      setShowLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(loadingTime);
+  }, []);
+
+  // remove scroll when on load
+  useEffect(() => {
+    if (showLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showLoading]);
+
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-x-hidden">
+      <Loading show={showLoading} />
       <div>
         <Nav />
       </div>

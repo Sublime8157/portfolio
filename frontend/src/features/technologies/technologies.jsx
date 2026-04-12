@@ -42,7 +42,7 @@ const Technologies = () => {
 
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-lg lg:text-2xl text-center">Technologies</h1>
+      <h1 className="text-lg lg:text-2xl text-center">TECHNOLOGIES</h1>
 
       <div
         className="relative"

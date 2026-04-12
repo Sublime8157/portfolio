@@ -21,12 +21,12 @@ const nav = () => {
 
   const [revealNav, setRevealNav] = useState(true);
   useEffect(() => {
-   setRevealNav(isLg);
+    setRevealNav(isLg);
   }, [isLg]);
 
   const navRef = useRef(null);
   useEffect(() => {
-    if(revealNav) return
+    if (revealNav) return;
     const handleClickOutsude = (e) => {
       if (navRef.current && !navRef.current.contains(e.target)) {
         setRevealNav(false);
@@ -39,7 +39,7 @@ const nav = () => {
 
   return (
     <div
-      className={`w-42 lg:w-screen bg-[#0f0e17]/50 lg:bg-[#0f0e17]/90 z-50 backdrop-blur-md fixed -right-20 lg:right-0 text-[#fffffe] ${revealNav ? "translate-x-0" : "translate-x-20"}`}
+      className={`w-42 lg:w-screen bg-[#0f0e17]/50 lg:bg-[#0f0e17]/90 z-40 backdrop-blur-md fixed -right-20 lg:right-0 text-[#fffffe] ${revealNav ? "translate-x-0" : "translate-x-20"}`}
       style={{ transitionDuration: "1000ms" }}
     >
       <nav
