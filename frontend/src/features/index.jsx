@@ -55,7 +55,7 @@ const index = () => {
 
   return (
     <div className="overflow-hidden bg-bg-main text-text-headline transition-colors duration-300">
-      {/* <Loading show={showLoading} /> */}
+      <Loading show={showLoading} />
       <div>
         <Nav />
       </div>

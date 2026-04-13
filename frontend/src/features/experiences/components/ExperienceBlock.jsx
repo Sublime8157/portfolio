@@ -49,7 +49,7 @@ const ExperienceBlock = ({
       {isEditing && (
         <button
           onClick={() => onDelete(exp.id)}
-          className="cursor-pointer absolute -top-5 right-0 text-red-400 
+          className="cursor-pointer absolute -top-5 right-0 text-icon-color
                      hover:text-red-300 text-xs"
         >
           <FontAwesomeIcon icon={faTrashCan} /> Remove
