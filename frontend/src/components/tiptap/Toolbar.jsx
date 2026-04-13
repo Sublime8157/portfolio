@@ -31,7 +31,7 @@ const Toolbar = () => {
   if (!activeEditor) return null;
 
   const baseBtn =
-    "w-8 h-8 flex items-center justify-center rounded border border-gray-600 transition-all duration-150";
+    "w-full h-8 flex items-center justify-center rounded border border-gray-600 transition-all duration-150";
   const active = "bg-black text-white";
   const inactive = "bg-gray-800 text-gray-400 hover:bg-gray-700";
 
