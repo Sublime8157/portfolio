@@ -32,7 +32,7 @@ const HeroBlock = ({
           {...attributes}
           {...listeners}
           className="opacity-0 group-hover:opacity-100 transition-opacity 
-                   cursor-grab mt-1 text-gray-500 hover:text-gray-300 
+                   cursor-grab mt-1 text-text-paragraph hover:text-gray-300 
                    select-none touch-none text-xs"
         >
           ⠿
@@ -40,7 +40,7 @@ const HeroBlock = ({
       )}
 
       {/* Block Content */}
-      <div className="flex-1">
+      <div className="text-text-paragraph flex-1">
         {block.type === "text" &&
           (isEditing ? (
             <Editor
@@ -49,7 +49,7 @@ const HeroBlock = ({
             />
           ) : (
             <div
-              className="outline-none"
+              className={`outline-none ${block.textClass}`}
               dangerouslySetInnerHTML={{ __html: block.content }}
             />
           ))}
@@ -63,7 +63,7 @@ const HeroBlock = ({
                 onChange={(e) =>
                   onUpdateButton(block.id, "label", e.target.value)
                 }
-                className="bg-transparent border-b border-gray-600 text-white 
+                className="bg-transparent border-b border-stroke text-text-paragraph
                          text-sm outline-none w-fit"
                 placeholder="Button label"
               />
@@ -73,14 +73,14 @@ const HeroBlock = ({
                 onChange={(e) =>
                   onUpdateButton(block.id, "url", e.target.value)
                 }
-                className="bg-transparent border-b border-gray-600 text-gray-400 
+                className="bg-transparent border-b border-stroke text-text-paragraph
                          text-xs outline-none w-fit"
                 placeholder="URL or email"
               />
               {/* Preview of actual button */}
               <Button
                 variant="primary"
-                className="lg:w-60 w-40 mt-1"
+                className="lg:w-60 w-40 mt-1 bg-accent text-accent-text"
                 onClick={() => {
                   if (block.url.includes("@")) {
                     navigator.clipboard.writeText(block.url);
@@ -95,7 +95,7 @@ const HeroBlock = ({
           ) : (
             <Button
               variant="primary"
-              className="lg:w-60 w-40 mt-1"
+              className="lg:w-60 w-40 mt-1 bg-accent text-accent-text"
               onClick={() => {
                 if (block.url.includes("@")) {
                   navigator.clipboard.writeText(block.url);

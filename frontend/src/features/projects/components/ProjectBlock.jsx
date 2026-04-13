@@ -33,7 +33,7 @@ const ProjectBlock = ({
         <button
           {...attributes}
           {...listeners}
-          className="absolute left-0 text-gray-500 hover:text-gray-300 
+          className="absolute left-0 text-text-paragraph hover:opacity-50 
                      cursor-grab text-xs select-none touch-none"
         >
           ⠿ drag
@@ -44,13 +44,13 @@ const ProjectBlock = ({
       {isEditing && (
         <button
           onClick={() => onDelete(project.id)}
-          className="cursor-pointer absolute right-0 text-red-400 hover:text-red-300 text-xs"
+          className="cursor-pointer absolute right-0 text-icon-color hover:opacity-50 text-xs"
         >
           <FontAwesomeIcon icon={faTrashCan} /> Remove
         </button>
       )}
 
-      <Motion className="lg:shadow-none shadow-md shadow-gray-600 p-5 lg:p-10 pt-5 flex items-start lg:flex-row flex-col lg:gap-20">
+      <Motion className="lg:shadow-none shadow-md shadow-shadow-color p-5 lg:p-10 pt-5 flex items-start lg:flex-row flex-col lg:gap-20">
         {/* Image Stack */}
         <div className="relative lg:w-80 lg:m-0 ml-3 h-32 w-full lg:mb-0 mb-10 shrink-0">
           {project.images.map((image, i) => (
@@ -73,7 +73,7 @@ const ProjectBlock = ({
                   onClick={() => onRemoveImage(project.id, i)}
                   className="absolute top-1 right-1 bg-black/60 text-red-400 
                              hover:text-red-300 text-xs rounded-full w-5 h-5 
-                             flex items-center justify-center"
+                             flex items-center justify-center cursor-pointer"
                 >
                   ✕
                 </button>
@@ -123,20 +123,20 @@ const ProjectBlock = ({
               <input
                 value={project.name}
                 onChange={(e) => onUpdate(project.id, "name", e.target.value)}
-                className="bg-transparent border-b border-gray-600 text-white 
+                className="bg-transparent border-b border-stroke text-text-paragraph 
                            text-sm outline-none"
                 placeholder="Project name"
               />
               <input
                 value={project.role}
                 onChange={(e) => onUpdate(project.id, "role", e.target.value)}
-                className="bg-transparent border-b border-gray-600 text-gray-400 
+                className="bg-transparent border-b border-stroke text-text-paragraph 
                            text-xs outline-none italic"
                 placeholder="Your role"
               />
             </div>
           ) : (
-            <h6 className="lg:text-base items-center flex flex-row gap-2 text-sm">
+            <h6 className="lg:text-base items-center flex flex-row gap-2 text-sm text-text-paragraph">
               {project.name} - {project.role}
             </h6>
           )}
@@ -149,12 +149,12 @@ const ProjectBlock = ({
                 onUpdate(project.id, "paragraph", e.target.value)
               }
               rows={6}
-              className="w-full bg-transparent border border-gray-600 rounded 
-                         text-sm text-[#a7a9be] outline-none p-2 resize-none"
+              className="w-full bg-transparent border border-stroke rounded 
+                         text-sm text-text-paragraph outline-none p-2 resize-none"
               placeholder="Describe your project... use \n for new lines"
             />
           ) : (
-            <div className="lg:text-base text-sm text-[#a7a9be] whitespace-pre-line">
+            <div className="lg:text-base text-sm text-text-paragraph whitespace-pre-line">
               {project.paragraph.split("\n").map(
                 (line, i) =>
                   line.trim() !== "" && (
@@ -162,7 +162,7 @@ const ProjectBlock = ({
                       <div className="z-10 text-sm flex flex-row items-start gap-2">
                         <FontAwesomeIcon
                           icon={faCircle}
-                          className="text-[8px] mt-2 text-[#ff8906]"
+                          className="text-[8px] mt-2 text-highlight"
                         />
                         <p>{line}</p>
                       </div>
@@ -178,7 +178,7 @@ const ProjectBlock = ({
               <li key={i} className="lg:text-base text-sm">
                 <div
                   className={`flex-wrap px-2 text-sm rounded-full 
-                               border border-gray-600 text-gray-600 
+                               border border-stroke text-gray-600 
                                flex items-center gap-1 ${isEditing ? "" : "hoverTech"}`}
                 >
                   {isEditing ? (
@@ -188,7 +188,7 @@ const ProjectBlock = ({
                         onChange={(e) =>
                           onUpdateTag(project.id, i, e.target.value)
                         }
-                        className="bg-transparent outline-none text-gray-400 
+                        className="bg-transparent outline-none text-text-paragraph
                                    text-xs w-16"
                       />
                       <button
@@ -209,9 +209,9 @@ const ProjectBlock = ({
             {isEditing && (
               <button
                 onClick={() => onAddTag(project.id)}
-                className="rounded-full border border-dashed border-gray-600 
+                className="rounded-full border border-dashed border-stroke 
                            px-2 text-xs text-gray-500 hover:text-gray-300 
-                           hover:border-gray-400 transition-colors"
+                           hover:border-gray-400 transition-colors cursor-pointer "
               >
                 + Add
               </button>
@@ -225,7 +225,7 @@ const ProjectBlock = ({
               onChange={(e) =>
                 onUpdate(project.id, "repository", e.target.value)
               }
-              className="bg-transparent border-b border-gray-600 text-gray-500 
+              className="bg-transparent border-b border-stroke text-text-paragraph 
                          text-xs outline-none w-full"
               placeholder="Repository URL"
             />

@@ -5,10 +5,14 @@ import { nanoid } from "nanoid";
 
 const uid = () => nanoid();
 
-export const createTextBlock = (content = "<p>New Text Block</p>") => ({
+export const createTextBlock = (
+  content = "<p>New Text Block</p>",
+  textClass = "",
+) => ({
   id: uid(),
   type: "text",
   content,
+  textClass,
 });
 
 export const createButtonBlock = (label = "Button", url = "#") => ({
@@ -19,10 +23,11 @@ export const createButtonBlock = (label = "Button", url = "#") => ({
 });
 
 const initialBlocks = [
-  createTextBlock("FREELANCE / FULL-TIME · RIZAL, PH"),
-  createTextBlock("Software Developer"),
+  createTextBlock("FREELANCE / FULL-TIME · RIZAL, PH", "text-lg text-gray-700"),
+  createTextBlock("Software Developer", "text-5xl"),
   createTextBlock(
     "Full-Stack Developer focused on building and maintaining ERP systems, solving real-world production issues, and continuously improving through modern web technologies.",
+    "text-sm text-gray-700",
   ),
   createButtonBlock(
     "LinkedIn",

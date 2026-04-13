@@ -44,7 +44,10 @@ const Experiences = () => {
 
   return (
     <div className="flex flex-col gap-10">
-      <Motion direction="top" className="mt-10 text-center text-lg md:text-2xl">
+      <Motion
+        direction="top"
+        className="mt-10 text-center text-lg md:text-2xl text-text-headline"
+      >
         EXPERIENCES
       </Motion>
 
@@ -59,7 +62,7 @@ const Experiences = () => {
             onClick={isEditing ? stopEditing : startEditing}
             className="absolute -top-6 right-0 z-10 text-xs px-2 py-1 
                        rounded border transition-all duration-150
-                       border-gray-800 text-gray-400 hover:text-white 
+                       border-gray-800 text-text-paragraph hover:opacity-70
                        hover:border-gray-300 bg-transparent cursor-pointer"
           >
             <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />

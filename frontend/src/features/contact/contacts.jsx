@@ -48,7 +48,7 @@ const Contact = () => {
           onClick={isEditing ? stopEditing : startEditing}
           className="absolute -top-6 right-0 z-10 text-xs px-2 py-1 
                      rounded border transition-all duration-150
-                     border-gray-800 text-gray-400 hover:text-white 
+                     border-gray-800 text-text-paragraph hover:opacity-50
                      hover:border-gray-300 bg-transparent cursor-pointer"
         >
           <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />
@@ -63,11 +63,11 @@ const Contact = () => {
             <Editor
               content={heading}
               onUpdate={(html) => setHeading(html)}
-              className="text-3xl lg:text-5xl text-gray-400 footer italic"
+              className="text-3xl lg:text-5xl text-text-headline footer italic"
             />
           ) : (
             <Motion
-              className="text-3xl lg:text-5xl text-gray-400 footer"
+              className="text-3xl lg:text-5xl text-text-headline footer"
               style={{ fontStyle: "italic" }}
             >
               <div dangerouslySetInnerHTML={{ __html: heading }} />
@@ -79,12 +79,12 @@ const Contact = () => {
             <Editor
               content={subheading}
               onUpdate={(html) => setSubheading(html)}
-              className="text-base lg:text-lg text-gray-400 italic font-extrabold"
+              className="text-base lg:text-lg text-text-headline italic font-extrabold"
             />
           ) : (
             <Motion
-              className="text-base lg:text-lg text-gray-400"
-              style={{ fontStyle: "italic", fontWeight: "800" }}
+              className="text-base lg:text-lg text-text-headline font-extrabold "
+              style={{ fontStyle: "italic" }}
             >
               <div dangerouslySetInnerHTML={{ __html: subheading }} />
             </Motion>
@@ -96,7 +96,7 @@ const Contact = () => {
               <div key={list.id}>
                 {isEditing ? (
                   <div
-                    className="flex flex-col gap-1 border border-gray-700 
+                    className="flex flex-col gap-1 border border-stroke 
                         rounded p-2 text-xs"
                   >
                     <input
@@ -104,8 +104,8 @@ const Contact = () => {
                       onChange={(e) =>
                         updateContactLink(list.id, "type", e.target.value)
                       }
-                      className="bg-transparent border-b border-gray-600 
-                       text-white outline-none"
+                      className="bg-transparent border-b border-stroke 
+                       text-text-paragraph outline-none"
                       placeholder="Label e.g. Phone"
                     />
                     <input
@@ -113,7 +113,7 @@ const Contact = () => {
                       onChange={(e) =>
                         updateContactLink(list.id, "link", e.target.value)
                       }
-                      className="bg-transparent border-b border-gray-600 
+                      className="bg-transparent border-b border-stroke 
                        text-gray-400 outline-none"
                       placeholder="Link or number"
                     />
@@ -122,15 +122,15 @@ const Contact = () => {
                       onChange={(e) =>
                         updateContactLink(list.id, "icon", e.target.value)
                       }
-                      className="bg-transparent border-b border-gray-600 
+                      className="bg-transparent border-b border-stroke 
                        text-gray-500 outline-none"
                       placeholder="Ion icon e.g. logo-github"
                     />
 
-                    {/* ✅ Remove button */}
+                    {/* Remove button */}
                     <button
                       onClick={() => removeContact(list.id)}
-                      className="flex items-center gap-1 text-red-400 hover:text-red-300 
+                      className="flex items-center justify-center gap-1 text-icon-color hover:opacity-50 
                        cursor-pointer mt-1 text-xs"
                     >
                       <FontAwesomeIcon icon={faTrashCan} /> Remove
@@ -155,7 +155,7 @@ const Contact = () => {
               </div>
             ))}
 
-            {/* ✅ Add contact button — edit mode only */}
+            {/*  Add contact button — edit mode only */}
             {isEditing && (
               <button
                 onClick={addContact}
@@ -179,7 +179,7 @@ const Contact = () => {
             placeholder="message"
             classname="h-40"
           />
-          <Button className="w-full py-2! text-gray-600! border bg-[#0f0e17]!">
+          <Button className="w-full py-2! text-accent text-accent-text">
             Submit
           </Button>
         </Motion>

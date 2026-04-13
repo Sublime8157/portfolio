@@ -39,11 +39,11 @@ const nav = () => {
 
   return (
     <div
-      className={`w-42 lg:w-screen bg-[#0f0e17]/50 lg:bg-[#0f0e17]/90 z-40 backdrop-blur-md fixed -right-20 lg:right-0 text-[#fffffe] ${revealNav ? "translate-x-0" : "translate-x-20"}`}
+      className={`w-42 lg:w-screen bg-bg-main/50 lg:bg-bg-main/90 z-40 backdrop-blur-md fixed -right-20 lg:right-0 text-[#fffffe] ${revealNav ? "translate-x-0" : "translate-x-20"}`}
       style={{ transitionDuration: "1000ms" }}
     >
       <nav
-        className={`relative border-b p-6 0 px-10 lg:px-20 text-xs border-gray-800 w-4/12 lg:w-screen transition-all `}
+        className={`relative border-b p-6 0 px-10 lg:px-20 text-xs border-stroke w-4/12 lg:w-screen transition-all `}
       >
         <button
           ref={navRef}
@@ -52,17 +52,17 @@ const nav = () => {
         >
           <ion-icon
             name={revealNav ? "caret-back-outline" : "caret-forward-outline"}
-            class="text-lg"
+            class="text-lg text-text-headline"
           ></ion-icon>
         </button>
         <div className="flex lg:flex-row flex-col items-center justify-between gap-8">
-          <div className="">joven.dev</div>
+          <div className="text-text-paragraph">joven.dev</div>
           <ul className="flex flex-col lg:flex-row lg:h-auto h-screen items-right gap-10">
             {sections.map((section, index) => {
               const icon = sectionIcons[section];
               return (
                 <li
-                  className="cursor-pointer hover:text-[#a7a9be]"
+                  className="cursor-pointer text-text-paragraph hover:text-[#a7a9be]"
                   onClick={() => handleClick(section)}
                   key={index}
                 >

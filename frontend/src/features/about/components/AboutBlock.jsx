@@ -32,7 +32,7 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
         <button
           {...attributes}
           {...listeners}
-          className="absolute -top-5 left-0 text-gray-500 hover:text-gray-300 
+          className="absolute -top-5 left-0 text-text-paragraph hover:text-gray-300 
                      cursor-grab text-xs select-none touch-none"
         >
           <FontAwesomeIcon icon={faGripVertical} /> Drag
@@ -42,7 +42,7 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
       {isEditing && (
         <button
           onClick={() => onDelete(card.id)}
-          className="cursor-pointer absolute -top-5 right-0 text-red-400 
+          className="cursor-pointer absolute -top-5 right-0 text-icon-color
                      hover:text-red-300 text-xs"
         >
           <FontAwesomeIcon icon={faTrashCan} /> Remove
@@ -52,11 +52,11 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
       <Motion
         className="transition-all ease-in-out hover:scale-105 p-4 flex 
                    w-full lg:text-base text-sm flex-col shadow-md 
-                   shadow-gray-600 border-gray-600 justify-start 
+                   shadow-shadow-color border-gray-600 justify-start 
                    items-start gap-4 text-[#a7a9be]"
       >
         <div className="flex flex-row items-center gap-2 w-full">
-          {icon && <FontAwesomeIcon icon={icon} className="text-[#ff8906]" />}
+          {icon && <FontAwesomeIcon icon={icon} className="text-highlight" />}
 
           {isEditing ? (
             <div className="flex flex-col gap-1 w-full">
@@ -64,7 +64,7 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
               <input
                 value={card.about}
                 onChange={(e) => onUpdate(card.id, "about", e.target.value)}
-                className="bg-transparent border-b border-gray-600 text-white 
+                className="bg-transparent border-b border-gray-600 text-text-headline
                            text-sm outline-none w-full"
                 placeholder="Card title"
               />
@@ -72,13 +72,13 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
               <input
                 value={card.iconName}
                 onChange={(e) => onUpdate(card.id, "iconName", e.target.value)}
-                className="bg-transparent border-b border-gray-600 text-gray-500 
+                className="bg-transparent border-b border-gray-600 text-text-paragraph
                            text-xs outline-none w-full"
                 placeholder="Icon name e.g. faLaptopCode"
               />
             </div>
           ) : (
-            <h6>{card.about}</h6>
+            <h6 className="text-text-headline">{card.about}</h6>
           )}
         </div>
 
@@ -88,11 +88,11 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
           <Editor
             content={card.paragraph}
             onUpdate={(html) => onUpdate(card.id, "paragraph", html)}
-            className="max-w-72"
+            className="max-w-72 text-text-paragraph"
           />
         ) : (
           <div
-            className="text-sm"
+            className="text-sm text-text-paragraph"
             dangerouslySetInnerHTML={{ __html: card.paragraph }}
           />
         )}

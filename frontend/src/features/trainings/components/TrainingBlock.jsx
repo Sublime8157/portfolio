@@ -31,19 +31,19 @@ const TrainingBlock = ({
         <button
           {...attributes}
           {...listeners}
-          className="absolute -top-3 left-0 text-gray-500 hover:text-gray-300 
+          className="absolute -top-3 left-0 text-text-paragraph hover:opacity-50
                      cursor-grab text-xs select-none touch-none"
         >
-          ⠿ drag
+          ⠿ Drag
         </button>
       )}
 
-      {/* Delete button — edit mode only */}
+      {/* Remove button — edit mode only */}
       {isEditing && (
         <button
           onClick={() => onDelete(training.id)}
-          className="absolute -top-3 right-0 text-red-400 
-                     hover:text-red-300 text-xs cursor-pointer 
+          className="absolute -top-3 right-0 text-icon-color 
+                     hover:opacity-50 text-xs cursor-pointer 
                      flex items-center gap-1"
         >
           <FontAwesomeIcon icon={faTrashCan} /> Remove
@@ -54,7 +54,7 @@ const TrainingBlock = ({
         <motion.div
           whileHover={{ scale: isEditing ? 1 : 1.02 }}
           whileTap={{ scale: 1 }}
-          className="text-left w-full flex flex-col gap-4 shadow-md shadow-gray-600 p-5 mt-4"
+          className="text-left w-full flex flex-col gap-4 shadow-md shadow-shadow-color p-5 mt-4"
         >
           {/* Title + Duration */}
           {isEditing ? (
@@ -62,7 +62,7 @@ const TrainingBlock = ({
               <input
                 value={training.title}
                 onChange={(e) => onUpdate(training.id, "title", e.target.value)}
-                className="bg-transparent border-b border-gray-600 text-white 
+                className="bg-transparent border-b border-stroke text-text-paragraph
                            text-sm outline-none w-full"
                 placeholder="Training title"
               />
@@ -71,7 +71,7 @@ const TrainingBlock = ({
                 onChange={(e) =>
                   onUpdate(training.id, "duration", e.target.value)
                 }
-                className="bg-transparent border-b border-gray-600 text-[#a7a9be] 
+                className="bg-transparent border-b border-stroke text-text-paragraph 
                            text-sm outline-none italic w-full"
                 placeholder="Start - End"
               />
@@ -80,7 +80,7 @@ const TrainingBlock = ({
             <div>
               <h6 className="lg:text-base text-sm">{training.title}</h6>
               <h6
-                className="text-[#a7a9be] lg:text-base text-sm"
+                className="text-text-paragraph lg:text-base text-sm"
                 style={{ fontStyle: "italic" }}
               >
                 {training.duration}
@@ -96,19 +96,19 @@ const TrainingBlock = ({
                 onUpdate(training.id, "paragraph", e.target.value)
               }
               rows={4}
-              className="w-full bg-transparent border border-gray-600 rounded 
-                         text-sm text-[#a7a9be] outline-none p-2 resize-none"
+              className="w-full bg-transparent border border-stroke rounded 
+                         text-sm text-text-paragraph outline-none p-2 resize-none"
               placeholder="Describe your training... use \n for new lines"
             />
           ) : (
-            <div className="text-[#a7a9be] text-sm whitespace-pre-line">
+            <div className="text-text-paragraph text-sm whitespace-pre-line">
               {training.paragraph.split("\n").map(
                 (line, i) =>
                   line.trim() !== "" && (
                     <div key={i} className="mb-2 flex gap-4 items-start">
                       <FontAwesomeIcon
                         icon={faCircle}
-                        className="text-[8px] mt-2 text-[#ff8906]"
+                        className="text-[8px] mt-2 text-highlight"
                       />
                       <p>{line}</p>
                     </div>
@@ -122,7 +122,7 @@ const TrainingBlock = ({
             {training.techs.map((tech, i) => (
               <div
                 key={i}
-                className={`border rounded-full px-2 border-gray-600 
+                className={`border rounded-full px-2 border-stroke 
                            flex items-center gap-1 ${isEditing ? "" : "hoverTech"}`}
               >
                 {isEditing ? (
@@ -152,7 +152,7 @@ const TrainingBlock = ({
             {isEditing && (
               <button
                 onClick={() => onAddTag(training.id)}
-                className="rounded-full border border-dashed border-gray-600 
+                className="rounded-full border border-dashed border-stroke 
                            px-2 text-xs text-gray-500 hover:text-gray-300 
                            hover:border-gray-400 transition-colors cursor-pointer"
               >

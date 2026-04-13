@@ -62,7 +62,7 @@ const ExperienceBlock = ({
       >
         <Motion
           direction="bottom"
-          className="flex gap-4 flex-col rounded shadow-md shadow-gray-600 p-4 text-left"
+          className="flex gap-4 flex-col rounded shadow-md shadow-shadow-color p-4 text-left"
         >
           {/* Header row — logo + name/role/tenure */}
           <div className="flex flex-row justify-between items-center">
@@ -99,14 +99,14 @@ const ExperienceBlock = ({
                     <input
                       value={exp.name}
                       onChange={(e) => onUpdate(exp.id, "name", e.target.value)}
-                      className="bg-transparent border-b border-gray-600 text-white 
+                      className="bg-transparent border-b border-stroke text-text-headline
                                  text-sm outline-none"
                       placeholder="Company name"
                     />
                     <input
                       value={exp.role}
                       onChange={(e) => onUpdate(exp.id, "role", e.target.value)}
-                      className="bg-transparent border-b border-gray-600 text-gray-400 
+                      className="bg-transparent border-b border-stroke text-text-paragraph
                                  text-xs outline-none italic"
                       placeholder="Role"
                     />
@@ -115,17 +115,17 @@ const ExperienceBlock = ({
                       onChange={(e) =>
                         onUpdate(exp.id, "tenure", e.target.value)
                       }
-                      className="bg-transparent border-b border-gray-600 text-gray-400 
+                      className="bg-transparent border-b border-stroke text-text-paragraph
                                  text-xs outline-none"
                       placeholder="Start - End"
                     />
                   </>
                 ) : (
                   <>
-                    <h6 className="lg:text-base text-sm">
+                    <h6 className="lg:text-base text-sm text-text-paragraph">
                       {exp.name} - {exp.role}
                     </h6>
-                    <h6 className="text-[#a7a9be] lg:text-base text-sm italic">
+                    <h6 className="text-text-paragraph lg:text-base text-sm italic">
                       {exp.tenure}
                     </h6>
                   </>
@@ -135,10 +135,13 @@ const ExperienceBlock = ({
 
             {/* Collapse toggle — view mode on mobile only */}
             {!isLg && !isEditing && (
-              <div className="cursor-pointer" onClick={toggleReveal}>
+              <div
+                className="cursor-pointer text-text-paragraph "
+                onClick={toggleReveal}
+              >
                 <ion-icon
                   name={revealed ? "remove-outline" : "add-outline"}
-                  class="text-2xl"
+                  class="text-2xl "
                 />
               </div>
             )}
@@ -159,8 +162,8 @@ const ExperienceBlock = ({
                 value={exp.paragraph}
                 onChange={(e) => onUpdate(exp.id, "paragraph", e.target.value)}
                 rows={6}
-                className="w-full bg-transparent border border-gray-600 rounded 
-                           text-sm text-[#a7a9be] outline-none p-2 resize-none"
+                className="w-full bg-transparent border border-stroke rounded 
+                           text-sm text-text-paragraph outline-none p-2 resize-none"
                 placeholder="Describe your experience... use \n for new lines"
               />
             ) : (
@@ -172,10 +175,10 @@ const ExperienceBlock = ({
                         <div className="z-10 text-xs mt-1">
                           <FontAwesomeIcon
                             icon={faCircle}
-                            className="text-[8px] text-[#ff8906]"
+                            className="text-[8px] text-highlight"
                           />
                         </div>
-                        <p>{line}</p>
+                        <p className="text-text-paragraph">{line}</p>
                       </div>
                     ),
                 )}
@@ -187,8 +190,8 @@ const ExperienceBlock = ({
               {exp.stacks?.map((item, index) => (
                 <div
                   key={index}
-                  className="hoverTech rounded-full border border-gray-600 p-1 
-                             px-2 text-xs flex items-center gap-1"
+                  className={`rounded-full border border-stroke p-1 
+                             px-2 text-xs flex items-center gap-1 ${isEditing ? "" : "hoverTech"}`}
                 >
                   {isEditing ? (
                     <>
@@ -197,12 +200,12 @@ const ExperienceBlock = ({
                         onChange={(e) =>
                           onUpdateTag(exp.id, index, e.target.value)
                         }
-                        className="bg-transparent outline-none text-gray-400 
+                        className="bg-transparent outline-none text-text-paragraph
                                    text-xs w-16"
                       />
                       <button
                         onClick={() => onRemoveTag(exp.id, index)}
-                        className="text-red-400 hover:text-red-300 text-xs"
+                        className="text-icon-color hover:text-red-300 text-xs"
                       >
                         ✕
                       </button>

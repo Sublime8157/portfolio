@@ -39,7 +39,9 @@ const About = () => {
 
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-lg lg:text-2xl text-center">ABOUT</h1>
+      <h1 className="text-lg lg:text-2xl text-center text-text-headline">
+        ABOUT
+      </h1>
 
       <div
         className="relative"
@@ -51,7 +53,7 @@ const About = () => {
             onClick={isEditing ? stopEditing : startEditing}
             className="absolute -top-6 right-0 z-10 text-xs px-2 py-1 
                        rounded border transition-all duration-150
-                       border-gray-800 text-gray-400 hover:text-white 
+                       border-gray-800 text-text-paragraph hover:opacity-50
                        hover:border-gray-300 bg-transparent cursor-pointer"
           >
             <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />

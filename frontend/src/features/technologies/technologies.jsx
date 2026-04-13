@@ -54,7 +54,7 @@ const Technologies = () => {
             onClick={isEditing ? stopEditing : startEditing}
             className="absolute -top-6 right-0 z-10 text-xs px-2 py-1 
                        rounded border transition-all duration-150
-                       border-gray-800 text-gray-400 hover:text-white 
+                       border-gray-800 text-text-paragraph hover:opacity-50
                        hover:border-gray-300 bg-transparent cursor-pointer"
           >
             <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />

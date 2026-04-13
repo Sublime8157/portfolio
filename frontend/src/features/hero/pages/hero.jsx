@@ -54,7 +54,7 @@ const Hero = () => {
           onClick={isEditing ? stopEditing : startEditing}
           className="cursor-pointer absolute -top-6 right-0 z-10 text-xs px-2 py-1 
                      rounded border transition-all duration-150
-                     border-gray-600 text-gray-400 hover:text-white 
+                     border-gray-600 text-text-paragraph hover:opacity-50
                      hover:border-gray-300 bg-transparent"
           style={{ transitionDuration: "300ms" }}
         >
@@ -147,7 +147,7 @@ const Hero = () => {
         <div className="relative group">
           <img
             src={profileImage}
-            className="h-60 w-60 lg:w-90 lg:h-90 rounded-full"
+            className="bg-tertiary h-60 w-60 lg:w-90 lg:h-90 rounded-full"
           />
           {isEditing && (
             <label

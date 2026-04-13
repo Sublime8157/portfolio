@@ -37,7 +37,7 @@ const TechnologiesBlock = ({
         <button
           {...attributes}
           {...listeners}
-          className="absolute -top-5 left-0 text-gray-500 hover:text-gray-300
+          className="absolute -top-5 left-0 text-text-paragraph hover:opacity-50
                          cursor-grab text-xs select-none touch-none"
         >
           <FontAwesomeIcon icon={faGripVertical} /> Drag
@@ -47,16 +47,16 @@ const TechnologiesBlock = ({
       {isEditing && (
         <button
           onClick={() => onDelete(card.id)}
-          className="cursor-pointer absolute -top-5 right-0 text-red-400
+          className="cursor-pointer absolute -top-5 right-0 text-icon-color
                      hover:text-red-300 text-xs"
         >
           <FontAwesomeIcon icon={faTrashCan} /> Remove
         </button>
       )}
-      <Motion className="justify-start w-full items-start flex flex-col gap-2 shadow-md shadow-gray-700 rounded p-4">
+      <Motion className="justify-start w-full items-start flex flex-col gap-2 shadow-md shadow-shadow-color rounded p-4">
         <div className="w-full self-start">
-          <h1 className="text-left mb-2 text-[#a7a9be] flex flex-row gap-2 items-center">
-            <FontAwesomeIcon icon={icon} className="text-[#ff8906]" />
+          <h1 className="text-left mb-2 text-text-headline flex flex-row gap-2 items-center">
+            <FontAwesomeIcon icon={icon} className="text-highlight" />
             {isEditing ? (
               <div className="flex flex-col gap-1 w-full">
                 <Editor
@@ -75,12 +75,12 @@ const TechnologiesBlock = ({
               </div>
             ) : (
               <div
-                className="text-sm"
+                className="text-sm text-text-headline"
                 dangerouslySetInnerHTML={{ __html: card.title.toUpperCase() }}
               />
             )}
           </h1>
-          <hr className="text-gray-800"></hr>
+          <hr className="text-stroke"></hr>
         </div>
         <Motion>
           <li className="text-sm flex-wrap flex flex-row gap-2">
@@ -97,11 +97,11 @@ const TechnologiesBlock = ({
                       onChange={(e) =>
                         onUpdateTag(card.id, index, e.target.value)
                       }
-                      className="bg-transparent outline-none text-gray-400 text-sm w-20"
+                      className="bg-transparent outline-none text-text-paragraph text-sm w-20"
                     />
                     <button
                       onClick={() => onRemoveTag(card.id, index)}
-                      className="font-bold cursor-pointer text-red-400 hover:text-red-300 text-xs leading-none
+                      className="font-bold cursor-pointer text-icon-color hover:text-red-300 text-xs leading-none
                     "
                     >
                       X

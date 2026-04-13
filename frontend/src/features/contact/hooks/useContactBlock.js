@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { nanoid } from "nanoid";
 
-const uid = () => crypto.randomUUID();
+const uid = () => nanoid();
 
 const initialContactList = [
   { id: uid(), type: "Phone", link: "+639154403873", icon: "call" },
