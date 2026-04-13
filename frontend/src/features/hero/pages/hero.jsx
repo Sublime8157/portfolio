@@ -1,104 +1,179 @@
 import Profile from "../../../assets/ProfileImage.png";
-import { TypeAnimation } from "react-type-animation";
-import Paragraph from "../components/paragraph.jsx";
-import Button from "../../utils/Button.jsx";
 import Motion from "../../utils/Motion.jsx";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { useHeroBlocks } from "../hooks/userHeroBlock.js";
+import HeroBlock from "../components/HeroBlock.jsx";
+import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Hero = () => {
-  const [revealRole, setRevealRole] = useState(false);
+  const {
+    blocks,
+    isEditing,
+    profileImage,
+    updateProfileImage,
+    startEditing,
+    stopEditing,
+    addTextBlock,
+    addButtonBlock,
+    deleteBlock,
+    updateBlock,
+    updateButton,
+    reorderBlocks,
+  } = useHeroBlocks();
 
-  // after 5 secs the typing animation will replace the static role
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setRevealRole(true);
-    }, 5000);
+  const [isHovered, setIsHovered] = useState(false);
+  const sensors = useSensors(useSensor(PointerSensor));
 
-    return () => clearTimeout(timeout); // cleanup
-  }, []);
-
-  const [copyEmail, setCopyEmail] = useState(false);
-  // replace the text to copied after 3 secs after clicking
-  useEffect(() => {
-    if (copyEmail) {
-      const timer = setTimeout(() => {
-        setCopyEmail(false);
-      }, 3000);
-      return () => clearTimeout(timer);
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (active.id !== over?.id) {
+      reorderBlocks(active.id, over.id);
     }
-  }, [copyEmail]);
+  };
 
   return (
-    <div className="flex w-full lg:flex-row lg:gap-0 gap-10 flex-col-reverse justify-between items-center">
+    <div
+      className="relative flex w-full lg:flex-row lg:gap-0 gap-10 flex-col-reverse justify-between items-center"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {(isHovered || isEditing) && (
+        <button
+          onClick={isEditing ? stopEditing : startEditing}
+          className="cursor-pointer absolute -top-6 right-0 z-10 text-xs px-2 py-1 
+                     rounded border transition-all duration-150
+                     border-gray-600 text-text-paragraph hover:opacity-50
+                     hover:border-gray-300 bg-transparent"
+          style={{ transitionDuration: "300ms" }}
+        >
+          <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />
+        </button>
+      )}
       <Motion
         direction="left"
         duration={1}
         className="flex flex-col gap-8 lg:w-6/12 w-12/12"
       >
-        <p className="text-sm text-[#88888b] tracking-widest">
-          FREELANCE / FULL-TIME · RIZAL, PH
-        </p>
-        <h1 className="lg:text-5xl text-3xl">
-          {!revealRole ? (
-            "Software Developer"
-          ) : (
-            <TypeAnimation
-              sequence={[
-                "Software Developer",
-                1000,
-                "Software Engineer",
-                1000,
-                "Web Developer",
-                1000,
-              ]}
-              speed={50}
-              repeat={Infinity}
-            />
-          )}
-        </h1>
-        <div className="text-[#a7a9be] lg:text-base text-sm">
-          <TypeAnimation sequence={[Paragraph, 1000]} speed={99} />
-        </div>
-        <div className="flex flex-row lg:gap-4 gap-2">
-          <Button
-            variant="primary"
-            className="lg:w-60 w-40 flex items-center justify-center gap-4"
-            onClick={() =>
-              window.open(
-                "https://www.linkedin.com/in/joven-miran-449207313/",
-                "_blank",
-              )
-            }
-          >
-            <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
-          </Button>
+        {/* Hoverable container with Edit/Save button */}
+        <div className="relative">
+          {/* Edit / Save button — top right corner */}
 
-          <Button
-            variant="outline"
-            className="lg:w-60 w-40"
-            onClick={() => {
-              navigator.clipboard.writeText("miranj8157@gmail.com"); // This doesnt work on mobile when on local
-              setCopyEmail(true);
-            }}
+          {/* Block System */}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
           >
-            <div className="flex flex-row items-center justify-center gap-4">
-              {copyEmail ? "Copied" : "Copy Email"}
-              <ion-icon
-                name={
-                  copyEmail ? "checkmark-done-outline" : "clipboard-outline"
-                }
-                class="text-lg"
-              ></ion-icon>
+            <SortableContext
+              items={blocks.map((b) => b.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              {/* Text Blocks — stacked vertically */}
+              <div className="flex flex-col gap-4">
+                {blocks
+                  .filter((b) => b.type === "text")
+                  .map((block) => (
+                    <HeroBlock
+                      key={block.id}
+                      block={block}
+                      isEditing={isEditing}
+                      onDelete={deleteBlock}
+                      onUpdate={updateBlock}
+                      onUpdateButton={updateButton}
+                    />
+                  ))}
+                {isEditing && (
+                  <div className="ms-4 flex gap-2">
+                    <button
+                      onClick={addTextBlock}
+                      className="text-xs w-48 cursor-pointer text-gray-500 border border-dashed border-gray-600 
+                           rounded px-3 py-1 hover:text-gray-300 hover:border-gray-400 
+                           transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Button Blocks — side by side */}
+              <div className="flex flex-row gap-4 flex-wrap mt-4">
+                {blocks
+                  .filter((b) => b.type === "button")
+                  .map((block) => (
+                    <HeroBlock
+                      key={block.id}
+                      block={block}
+                      isEditing={isEditing}
+                      onDelete={deleteBlock}
+                      onUpdate={updateBlock}
+                      onUpdateButton={updateButton}
+                    />
+                  ))}
+              </div>
+            </SortableContext>
+          </DndContext>
+
+          {/* Add Block Controls — only in edit mode */}
+          {isEditing && (
+            <div className="ms-4 flex gap-2 mt-4">
+              <button
+                onClick={addButtonBlock}
+                className="text-xs w-64 cursor-pointer text-gray-500 border border-dashed border-gray-600 
+                           rounded px-3 py-1 hover:text-gray-300 hover:border-gray-400 
+                           transition-colors"
+              >
+                +
+              </button>
             </div>
-          </Button>
+          )}
         </div>
       </Motion>
+
+      {/* Profile Image — stays static */}
       <Motion direction="right" className="">
-        <img
-          src={Profile}
-          className="h-60 w-60 lg:w-90 lg:h-90 rounded-full"
-        ></img>
+        <div className="relative group">
+          <img
+            src={profileImage}
+            className="bg-tertiary h-60 w-60 lg:w-90 lg:h-90 rounded-full"
+          />
+          {isEditing && (
+            <label
+              className="absolute inset-0 flex items-center justify-center 
+                   rounded-full cursor-pointer
+                   bg-black/50 opacity-0 group-hover:opacity-100 
+                   transition-opacity duration-200"
+            >
+              <span className="text-white text-xs text-center px-4">
+                Click to replace
+              </span>
+              {/* Hidden file input */}
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    updateProfileImage(file);
+                  }
+                }}
+              />
+            </label>
+          )}
+        </div>
       </Motion>
     </div>
   );

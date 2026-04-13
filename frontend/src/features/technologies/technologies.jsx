@@ -1,45 +1,108 @@
-import technologyList, { icons } from "./components/technologyList";
-import Motion from "../utils/Motion";
-import { motion } from "framer-motion";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { useState } from "react";
+import { useTechnologiesBlock } from "./hooks/useTechnologiesBlock.js";
+import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TechnologiesBlock from "./components/TechnologiesBlock.jsx";
 
-const technologies = () => {
+const Technologies = () => {
+  const {
+    cards,
+    isEditing,
+    startEditing,
+    stopEditing,
+    addCard,
+    deleteCard,
+    updateCard,
+    reorderCards,
+    addTag,
+    removeTag,
+    updateTag,
+  } = useTechnologiesBlock();
+
+  const [isHovered, setIsHovered] = useState(false);
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (active.id !== over?.id) {
+      reorderCards(active.id, over.id);
+    }
+  };
+
   return (
-    <div className="">
-      <Motion direction="top" className="text-lg lg:text-2xl text-center">
-        TECHNOLOGIES
-      </Motion>
-      <div className="mt-10 flex flex-col flex-wrap lg:justify-around gap-8 items-start">
-        {technologyList.map((item, index) => (
-          <motion.button
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 1 }}
-            key={index}
-            className="justify-start w-full items-start flex flex-col gap-2 shadow-md shadow-gray-700 rounded p-4"
+    <div className="flex flex-col gap-8">
+      <h1 className="text-lg lg:text-2xl text-center">TECHNOLOGIES</h1>
+
+      <div
+        className="relative"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {(isHovered || isEditing) && (
+          <button
+            onClick={isEditing ? stopEditing : startEditing}
+            className="absolute -top-6 right-0 z-10 text-xs px-2 py-1 
+                       rounded border transition-all duration-150
+                       border-gray-800 text-text-paragraph hover:opacity-50
+                       hover:border-gray-300 bg-transparent cursor-pointer"
           >
-            <div className="w-full self-start">
-              <h1 className="text-left mb-2 text-[#a7a9be] flex flex-row gap-2 items-center">
-                <FontAwesomeIcon icon={icons[item.tech]} className="text-[#ff8906]" />
-                {item.tech.toUpperCase()}
-              </h1>
-              <hr className="text-gray-800"></hr>
+            <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />
+          </button>
+        )}
+
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={cards.map((c) => c.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="mt-10 flex flex-col flex-wrap lg:justify-around gap-8 items-start">
+              {cards.map((card) => {
+                return (
+                  <TechnologiesBlock
+                    key={card.id}
+                    card={card}
+                    isEditing={isEditing}
+                    onDelete={deleteCard}
+                    onUpdate={updateCard}
+                    onAddTag={addTag}
+                    onRemoveTag={removeTag}
+                    onUpdateTag={updateTag}
+                  />
+                );
+              })}
+              {isEditing && (
+                <div className="h-full w-full flex self-center">
+                  <button
+                    onClick={addCard}
+                    className="h-20 w-full cursor-pointer text-gray-500 border border-dashed border-gray-600 
+                         rounded hover:text-gray-300 hover:border-gray-400 
+                         transition-colors text-3xl bold"
+                  >
+                    +
+                  </button>
+                </div>
+              )}
             </div>
-            <Motion delay={index * 0.03}>
-              <li className="text-sm flex-wrap flex flex-row gap-2">
-                {item.lists.map((list, index) => {
-                  return (
-                    <div key={index} className="text-gray-500 hoverTech lg:text-base text-sm border p-1 px-2 rounded-full">
-                      {list}
-                    </div>
-                  );
-                })}
-              </li>
-            </Motion>
-          </motion.button>
-        ))}
+          </SortableContext>
+        </DndContext>
       </div>
     </div>
   );
 };
 
-export default technologies;
+export default Technologies;

@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Hero {
+  id        Int    @id @default(autoincrement())
+  title     String
+  image_url String
+  paragraph String
+}
+
+model About {
+  id           Int    @id @default(autoincrement())
+  i_do         String
+  i_contribute String
+  i_focus      String
+}
+
+model Technologies {
+  id    Int            @id @default(autoincrement())
+  stack String
+  type  technologyType
+}
+
+model Experiences {
+  id        Int               @id @default(autoincrement())
+  company   String
+  title     String
+  tenure    String
+  paragraph String
+  stack     ExperienceStack[] // This is the column that define the connection between ExperienceStack, array means multiple ExperienceStack can be connected to one Experiences
+}
+
+model ExperienceStack {
+  id           Int         @id @default(autoincrement())
+  experienceId Int
+  experience   Experiences @relation(fields: [experienceId], references: [id], onDelete: Cascade) // This is not a column This is just the way prisma to define the relation between two tables
+  technology   String
+}
+
+model Projects {
+  id        Int            @id @default(autoincrement())
+  name      String
+  role      String
+  paragraph String
+  repo_link String
+  image_url String
+  stack     ProjectStack[]
+}
+
+model ProjectStack {
+  id         Int      @id @default(autoincrement())
+  projectId  Int
+  project    Projects @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology String
+}
+
+model Trainings {
+  id        Int             @id @default(autoincrement())
+  name      String
+  tenure    String
+  paragraph String
+  stack     TrainingStack[]
+}
+
+model TrainingStack {
+  id         Int       @id @default(autoincrement())
+  trainingId Int
+  training   Trainings @relation(fields: [trainingId], references: [id], onDelete: Cascade)
+  technology String
+}
+
+model Footer {
+  id      Int        @id @default(autoincrement())
+  poster  String
+  contact Contacts[]
+}
+
+model Contacts {
+  id       Int     @id @default(autoincrement())
+  name     String
+  link     String
+  footerId Int?
+  footer   Footer? @relation(fields: [footerId], references: [id])
+}
+
+enum technologyType {
+  FRONTEND
+  BACKEND
+  TOOLS
+}

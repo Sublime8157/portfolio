@@ -1,36 +1,80 @@
 import sections, { sectionMap } from "./navigation/components/sections.jsx";
 import Hero from "./hero/pages/hero.jsx";
 import Nav from "./navigation/nav.jsx";
-import Toolbar from "../components/tiptap/toolbar.jsx";
-import { useState } from "react";
-import { faGear, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEditorContext } from "../context/EditorContext.jsx";
+import Toolbar from "../components/tiptap/Toolbar.jsx";
+import { useEffect, useRef, useState } from "react";
+import Loading from "../components/Loading.jsx";
+import ThemeToggle from "../components/ThemeToggle.jsx";
 
 const index = () => {
+  const { toolBarVisible, unregisterEditor, activeEditor } = useEditorContext();
   const today = new Date();
   const year = today.getFullYear();
+  const toolbarRef = useRef(null);
+  const toolBarVisibleRef = useRef(toolBarVisible);
 
-  const [hideToolbar, setHideToolbar] = useState(false);
+  // Keep the ref in sync with the latest value
+  useEffect(() => {
+    toolBarVisibleRef.current = toolBarVisible;
+  }, [toolBarVisible]);
+
+  useEffect(() => {
+    const handleMouseDown = (e) => {
+      if (!toolBarVisibleRef.current) return;
+
+      const clickedInsideToolbar = toolbarRef.current?.contains(e.target);
+      const clickedInsideEditor = activeEditor?.view?.dom?.contains(e.target);
+
+      if (!clickedInsideToolbar && !clickedInsideEditor) {
+        unregisterEditor();
+      }
+    };
+    document.addEventListener("mousedown", handleMouseDown);
+    return () => document.removeEventListener("mousedown", handleMouseDown);
+  }, [toolBarVisible, activeEditor]);
+
+  // set loading
+  const [showLoading, setShowLoading] = useState(true);
+  useEffect(() => {
+    const loadingTime = setTimeout(() => {
+      setShowLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(loadingTime);
+  }, []);
+
+  // remove scroll when on load
+  useEffect(() => {
+    if (showLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showLoading]);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden bg-bg-main text-text-headline transition-colors duration-300">
+      <Loading show={showLoading} />
       <div>
         <Nav />
       </div>
-      <div
-        className={`flex flex-row items-end pb-4 bottom-0 left-0 fixed ease-in-out transition-all ${!hideToolbar ? "-translate-x-[calc(100%-50px)]" : ""}`}
-        style={{ transitionDuration: "500ms" }}
-      >
-        <Toolbar />
-        <button
-          className="text-white cursor-pointer flex flex-row gap-1 opacity-60 hover:opacity-100 transition-transform"
-          onClick={() => setHideToolbar((prev) => !prev)}
+
+      {/* tiptap toolbar  */}
+      {toolBarVisible && (
+        <div
+          ref={toolbarRef}
+          className="fixed left-0 top-1/2 -translate-y-1/2 z-50 
+               animate-slide-in-left"
         >
-          <FontAwesomeIcon icon={faGear} />
-          <FontAwesomeIcon icon={faAnglesRight} />
-        </button>
-      </div>
-      <div className="text-white"></div>
+          <Toolbar />
+        </div>
+      )}
+
+      {/* toggle dark/light mode */}
+      <ThemeToggle />
+
+      <div></div>
       <div className="text-sm flex flex-col text-[#fffffe] lg:px-20 ">
         {/* Hero */}
         <div
