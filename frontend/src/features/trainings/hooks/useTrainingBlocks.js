@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
+import { nanoid } from "nanoid";
 
-const uid = () => crypto.randomUUID();
+const uid = () => nanoid();
 
 export const createTrainingBlock = (
   title = "Training Title",

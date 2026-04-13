@@ -2,8 +2,9 @@ import { useState } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import ExpLogo1 from "../../../assets/Exp1.png";
 import ExpLogo2 from "../../../assets/Exp2.png";
+import { nanoid } from "nanoid";
 
-const uid = () => crypto.randomUUID();
+const uid = () => nanoid();
 
 export const createExperienceBlock = (
   name = "Company Name",

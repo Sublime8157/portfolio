@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import ProfileImage from "../../../assets/ProfileImage.png";
+import { nanoid } from "nanoid";
 
-const uid = () => crypto.randomUUID();
+const uid = () => nanoid();
 
 export const createTextBlock = (content = "<p>New Text Block</p>") => ({
   id: uid(),

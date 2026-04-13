@@ -2,10 +2,11 @@ import { useState } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { nanoid } from "nanoid";
 
 library.add(fas);
 
-const uid = () => crypto.randomUUID();
+const uid = () => nanoid();
 
 export const createCardBlock = (
   title = "Type",

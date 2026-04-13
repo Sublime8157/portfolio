@@ -5,8 +5,9 @@ import Image2 from "../../../assets/Project1/2.png";
 import Image3 from "../../../assets/Project1/3.png";
 import Image4 from "../../../assets/Project1/4.png";
 import Image5 from "../../../assets/Project1/5.png";
+import { nanoid } from "nanoid";
 
-const uid = () => crypto.randomUUID();
+const uid = () => nanoid();
 
 export const createProjectBlock = (
   name = "Project Name",
