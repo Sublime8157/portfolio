@@ -69,7 +69,7 @@ const Toolbar = () => {
         className="w-8 h-8 text-xs rounded border border-gray-600 bg-gray-800 text-white text-center cursor-pointer"
         defaultValue="14px"
       >
-        {[12, 14, 16, 18, 20, 24, 28].map((size) => (
+        {[12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 44, 48, 52].map((size) => (
           <option key={size} value={`${size}px`}>
             {size}
           </option>
