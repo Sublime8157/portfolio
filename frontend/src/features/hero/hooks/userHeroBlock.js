@@ -21,7 +21,9 @@ export const createButtonBlock = (label = "Button", url = "#") => ({
 const initialBlocks = [
   createTextBlock("FREELANCE / FULL-TIME · RIZAL, PH"),
   createTextBlock("Software Developer"),
-  createTextBlock("I am a software developer based in Rizal, PH."),
+  createTextBlock(
+    "Full-Stack Developer focused on building and maintaining ERP systems, solving real-world production issues, and continuously improving through modern web technologies.",
+  ),
   createButtonBlock(
     "LinkedIn",
     "https://www.linkedin.com/in/joven-miran-449207313/",
