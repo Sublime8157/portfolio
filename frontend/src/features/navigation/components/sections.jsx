@@ -2,7 +2,7 @@ import About from "../../about/about.jsx";
 import Technologies from "../../technologies/technologies.jsx";
 import Experiences from "../../experiences/experiences.jsx";
 import Projects from "../../projects/projects.jsx";
-import Trainings from "../../trainings/components/trainings.jsx";
+import Trainings from "../../trainings/trainings.jsx";
 import Contacts from "../../contact/contacts.jsx";
 
 export const sections = [
