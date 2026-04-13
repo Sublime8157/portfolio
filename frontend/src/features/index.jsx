@@ -5,6 +5,7 @@ import { useEditorContext } from "../context/EditorContext.jsx";
 import Toolbar from "../components/tiptap/Toolbar.jsx";
 import { useEffect, useRef, useState } from "react";
 import Loading from "../components/Loading.jsx";
+import ThemeToggle from "../components/ThemeToggle.jsx";
 
 const index = () => {
   const { toolBarVisible, unregisterEditor, activeEditor } = useEditorContext();
@@ -53,11 +54,13 @@ const index = () => {
   }, [showLoading]);
 
   return (
-    <div className="overflow-x-hidden">
-      <Loading show={showLoading} />
+    <div className="overflow-hidden bg-bg-main text-text-headline transition-colors duration-300">
+      {/* <Loading show={showLoading} /> */}
       <div>
         <Nav />
       </div>
+
+      {/* tiptap toolbar  */}
       {toolBarVisible && (
         <div
           ref={toolbarRef}
@@ -67,6 +70,10 @@ const index = () => {
           <Toolbar />
         </div>
       )}
+
+      {/* toggle dark/light mode */}
+      <ThemeToggle />
+
       <div></div>
       <div className="text-sm flex flex-col text-[#fffffe] lg:px-20 ">
         {/* Hero */}
