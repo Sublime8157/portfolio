@@ -1,154 +1,166 @@
-import ProjectList from "./components/projectList";
-import Motion from "../utils/Motion";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faLocationArrow,
-  faCircle,
-  faArrowDown,
-} from "@fortawesome/free-solid-svg-icons";
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { useState } from "react";
+import { useProjectBlocks } from "./hooks/useProjectBlock.js";
+import ProjectBlock from "./components/ProjectBlock.jsx";
+import Motion from "../utils/Motion.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null); // holds the clicked list
+  const {
+    projects,
+    isEditing,
+    startEditing,
+    stopEditing,
+    addProject,
+    deleteProject,
+    updateProject,
+    addImage,
+    removeImage,
+    addTag,
+    removeTag,
+    updateTag,
+    reorderProjects,
+  } = useProjectBlocks();
+
+  const [isHovered, setIsHovered] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const sensors = useSensors(useSensor(PointerSensor));
 
-  const handleOpen = (list) => {
-    setSelectedProject(list);
-    setCurrentIndex(0); // reset to first image each time
+  const handleOpen = (project) => {
+    setSelectedProject(project);
+    setCurrentIndex(0);
   };
 
-  const handleClose = () => {
-    setSelectedProject(null);
-  };
+  const handleClose = () => setSelectedProject(null);
 
-  const handlePrev = () => {
+  const handlePrev = () =>
     setCurrentIndex((prev) =>
       prev === 0 ? selectedProject.images.length - 1 : prev - 1,
     );
-  };
 
-  const handleNext = () => {
+  const handleNext = () =>
     setCurrentIndex((prev) =>
       prev === selectedProject.images.length - 1 ? 0 : prev + 1,
     );
-  };
 
-  const handleLinkClick = () => {
-    window.open("https://github.com/Sublime8157/asTee-defended-.git", "_blank");
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (active.id !== over?.id) {
+      reorderProjects(active.id, over.id);
+    }
   };
 
   return (
     <div>
-      <Motion direction="top" className="mb-4 text-lg lg:text-2xl text-center">
-       MOST RECENT PROJECT{ProjectList.length > 1 ? "S" : ""}
+      <Motion direction="top" className="mb-12 text-lg lg:text-2xl text-center">
+        MOST RECENT PROJECT{projects.length > 1 ? "S" : ""}
       </Motion>
-      {ProjectList.map((list, index) => (
-        <Motion
-          key={index}
-          className="lg:shadow-none shadow-md shadow-gray-600 p-5 lg:p-10 pt-5 flex items-start lg:flex-row flex-col lg:gap-20"
-        >
-          {/* Image Stack */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 1 }}
-            className="relative lg:w-80 lg:m-0 ml-3 h-32 w-full lg:mb-0 mb-10 cursor-pointer shrink-0"
-            onClick={() => handleOpen(list)}
+
+      <div
+        className="relative py-10"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Edit / Save button */}
+        {(isHovered || isEditing) && (
+          <button
+            onClick={isEditing ? stopEditing : startEditing}
+            className="absolute -top-2 right-0 z-10 text-xs px-2 py-1 
+                       rounded border transition-all duration-150
+                       border-gray-800 text-gray-400 hover:text-white 
+                       hover:border-gray-300 bg-transparent cursor-pointer"
           >
-            {list.images.map((image, i) => (
-              <img
-                key={i}
-                src={image}
-                className="absolute lg:w-full w-64 h-32 object-cover rounded-lg shadow-md"
-                style={{
-                  top: i * 6,
-                  left: i * 6,
-                  zIndex: list.images.length - i,
-                }}
+            <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />
+          </button>
+        )}
+
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={projects.map((p) => p.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            {projects.map((project) => (
+              <ProjectBlock
+                key={project.id}
+                project={project}
+                isEditing={isEditing}
+                onDelete={deleteProject}
+                onUpdate={updateProject}
+                onAddImage={addImage}
+                onRemoveImage={removeImage}
+                onAddTag={addTag}
+                onRemoveTag={removeTag}
+                onUpdateTag={updateTag}
+                onOpen={handleOpen}
               />
             ))}
-          </motion.button>
-          <hr className="lg:hidden block w-full text-gray-600 mb-8"></hr>
-          <div className="flex flex-col gap-4 shadow-md">
-            <h6 className="lg:text-base items-center flex flex-row  gap-2 text-sm">
-              <div>
-                {list.name} - {list.role}
-              </div>
-            </h6>
-            <div className="lg:text-base text-sm text-[#a7a9be] whitespace-pre-line">
-              {list.paragraph.split("\n").map(
-                (line, i) =>
-                  line.trim() !== "" && (
-                    <div key={i} className="mb-2 flex gap-4 items-start">
-                      <div className="z-10 text-sm flex flex-row items-start gap-2">
-                        <FontAwesomeIcon
-                          icon={faCircle}
-                          className="text-[8px] mt-2 text-[#ff8906]"
-                        />
-                        <p>{line}</p>
-                      </div>
-                    </div>
-                  ),
-              )}
-            </div>
-            <ul className="flex flex-wrap flex-row gap-4">
-              {list.technologies.map((tech, i) => (
-                <li key={i} className="lg:text-base text-sm">
-                  <div className="hoverTech flex-wrap px-2 text-sm rounded-full border border-gray-600 text-gray-600">
-                    <span>{tech}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 1 }}
-              className=" cursor-pointer w-28 px-2 border border-gray-500 justify-between  text-gray-500 rounded-full p-2 flex flex-row items-center"
-              onClick={handleLinkClick}
-              style={{ transitionDuration: "150ms" }}
-            >
-              <p>Repository</p>
-              <FontAwesomeIcon icon={faArrowDown} className="-rotate-130" />
-            </motion.button>
-          </div>
-        </Motion>
-      ))}
+          </SortableContext>
+        </DndContext>
 
-      {/* Modal — outside the map, uses selectedProject */}
+        {/* Add project — edit mode only */}
+        {isEditing && (
+          <div className="h-full w-full flex self-center mt-8">
+            <button
+              onClick={addProject}
+              className="h-20 w-full cursor-pointer text-gray-500 border 
+                         border-dashed border-gray-600 rounded hover:text-gray-300 
+                         hover:border-gray-400 transition-colors text-3xl"
+            >
+              +
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Modal — unchanged from your original */}
       {selectedProject && (
         <div
           className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
           onClick={handleClose}
         >
           <div
-            className="relative  rounded-xl p-4 max-w-2xl w-12/12 mx-4"
+            className="relative rounded-xl p-4 max-w-2xl w-full mx-4"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute cursor-pointer -top-3.75 right-3 text-gray-500 hover:text-black text-xl z-10"
+              className="absolute cursor-pointer -top-3.75 right-3 text-gray-500 
+                         hover:text-white text-xl z-10"
               onClick={handleClose}
             >
               ✕
             </button>
-
             <img
               src={selectedProject.images[currentIndex]}
               className="w-full h-40 lg:h-80 object-cover rounded-lg"
             />
-
             <p className="text-center text-sm text-gray-500 mt-2">
               {currentIndex + 1} / {selectedProject.images.length}
             </p>
-
             <div className="flex justify-between mt-3">
               <button
-                className="px-4 py-2 hover:opacity-50 cursor-pointer rounded-lg text-sm font-medium"
+                className="px-4 py-2 hover:opacity-50 cursor-pointer rounded-lg text-sm"
                 onClick={handlePrev}
               >
                 ← Prev
               </button>
               <button
-                className="px-4 py-2 hover:opacity-50 cursor-pointer rounded-lg text-sm font-medium"
+                className="px-4 py-2 hover:opacity-50 cursor-pointer rounded-lg text-sm"
                 onClick={handleNext}
               >
                 Next →
