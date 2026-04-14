@@ -15,11 +15,18 @@ export const createTextBlock = (
   textClass,
 });
 
-export const createButtonBlock = (label = "Button", url = "#") => ({
+export const createButtonBlock = (
+  label = "Button",
+  url = "#",
+  variant = "",
+  buttonClass = "",
+) => ({
   id: uid(),
   type: "button",
   label,
   url,
+  variant,
+  buttonClass,
 });
 
 const initialBlocks = [
@@ -35,9 +42,10 @@ const initialBlocks = [
   createButtonBlock(
     "LinkedIn",
     "https://www.linkedin.com/in/joven-miran-449207313/",
-    "",
+    "primary",
+    "bg-accent! text-accent-text!",
   ),
-  createButtonBlock("Copy Email", "miranj8157@gmail.com"),
+  createButtonBlock("Copy Email", "miranj8157@gmail.com", "outline", ""),
 ];
 
 export const useHeroBlocks = () => {

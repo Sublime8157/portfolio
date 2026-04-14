@@ -10,7 +10,7 @@ const button = ({ variant = "primary", className = "", onClick, children }) => {
   return (
     <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 1 }}>
       <div
-        className={`text-center lg:text-base text-xs p-3 cursor-pointer ${variants[variant]} ${className} bg-accent text-accent-text`}
+        className={`text-center lg:text-base text-xs p-3 cursor-pointer ${variants[variant]} ${className}`}
         onClick={onClick}
       >
         {children}

@@ -94,8 +94,8 @@ const HeroBlock = ({
             </div>
           ) : (
             <Button
-              variant="primary"
-              className="lg:w-60 w-40 mt-1 bg-accent text-accent-text"
+              variant={block.variant}
+              className={`lg:w-60 w-40 mt-1 ${block.buttonClass}`}
               onClick={() => {
                 if (block.url.includes("@")) {
                   navigator.clipboard.writeText(block.url);

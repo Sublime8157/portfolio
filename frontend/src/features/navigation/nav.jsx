@@ -69,9 +69,9 @@ const nav = () => {
                   {isLg ? (
                     <div>{section}</div>
                   ) : (
-                    <Button variant="plain" className="">
+                    <a variant="plain">
                       <ion-icon name={icon} class="text-lg"></ion-icon>
-                    </Button>
+                    </a>
                   )}
                 </li>
               );
