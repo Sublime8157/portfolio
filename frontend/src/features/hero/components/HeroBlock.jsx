@@ -4,6 +4,7 @@ import Editor from "../../../components/tiptap/Editor.jsx";
 import Button from "../../utils/Button.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { useState } from "react";
 
 const HeroBlock = ({
   block,
@@ -19,6 +20,8 @@ const HeroBlock = ({
     transform: CSS.Transform.toString(transform),
     transition,
   };
+
+  const [copied, setCopied] = useState(false);
 
   return (
     <div
@@ -84,6 +87,7 @@ const HeroBlock = ({
                 onClick={() => {
                   if (block.url.includes("@")) {
                     navigator.clipboard.writeText(block.url);
+                    console.log(copied);
                   } else {
                     window.open(block.url, "_blank");
                   }
@@ -94,17 +98,22 @@ const HeroBlock = ({
             </div>
           ) : (
             <Button
-              variant="primary"
-              className="lg:w-60 w-40 mt-1 bg-accent text-accent-text"
+              variant={block.variant}
+              className={`lg:w-60 w-40 mt-1 ${block.buttonClass}`}
               onClick={() => {
                 if (block.url.includes("@")) {
                   navigator.clipboard.writeText(block.url);
+                  setCopied(true);
+
+                  setTimeout(() => {
+                    setCopied(false);
+                  }, 1500);
                 } else {
                   window.open(block.url, "_blank");
                 }
               }}
             >
-              {block.label}
+              {copied ? "Copied!" : block.label}
             </Button>
           ))}
       </div>

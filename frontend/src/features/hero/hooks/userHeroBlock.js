@@ -15,16 +15,26 @@ export const createTextBlock = (
   textClass,
 });
 
-export const createButtonBlock = (label = "Button", url = "#") => ({
+export const createButtonBlock = (
+  label = "Button",
+  url = "#",
+  variant = "",
+  buttonClass = "",
+) => ({
   id: uid(),
   type: "button",
   label,
   url,
+  variant,
+  buttonClass,
 });
 
 const initialBlocks = [
-  createTextBlock("FREELANCE / FULL-TIME · RIZAL, PH", "text-lg text-gray-700"),
-  createTextBlock("Software Developer", "text-5xl"),
+  createTextBlock(
+    "FREELANCE / FULL-TIME · RIZAL, PH",
+    "lg:text-lg text-base text-gray-700",
+  ),
+  createTextBlock("Software Developer", "lg:text-5xl text-3xl"),
   createTextBlock(
     "Full-Stack Developer focused on building and maintaining ERP systems, solving real-world production issues, and continuously improving through modern web technologies.",
     "text-sm text-gray-700",
@@ -32,8 +42,10 @@ const initialBlocks = [
   createButtonBlock(
     "LinkedIn",
     "https://www.linkedin.com/in/joven-miran-449207313/",
+    "primary",
+    "bg-accent! text-accent-text!",
   ),
-  createButtonBlock("Copy Email", "miranj8157@gmail.com"),
+  createButtonBlock("Copy Email", "miranj8157@gmail.com", "outline", ""),
 ];
 
 export const useHeroBlocks = () => {
