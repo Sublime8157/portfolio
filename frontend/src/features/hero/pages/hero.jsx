@@ -1,4 +1,3 @@
-import Profile from "../../../assets/ProfileImage.png";
 import Motion from "../../utils/Motion.jsx";
 import { useState } from "react";
 import {

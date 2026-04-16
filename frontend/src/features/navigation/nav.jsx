@@ -1,8 +1,8 @@
 import { lenisInstance } from "../../App";
 import sections, { sectionIcons } from "../navigation/components/sections.jsx";
 import useBreakPoints from "../../hooks/useBreakPoint.js";
-import Button from "../utils/Button.jsx";
 import { useState, useEffect, useRef } from "react";
+// import Editor from "../../components/tiptap/Editor.jsx";
 
 const nav = () => {
   const isLg = useBreakPoints(1024);
@@ -56,7 +56,9 @@ const nav = () => {
           ></ion-icon>
         </button>
         <div className="flex lg:flex-row flex-col items-center justify-between gap-8">
-          <div className="text-text-paragraph">joven.dev</div>
+          <a href="#hero" className="text-text-paragraph">
+            joven.dev
+          </a>
           <ul className="flex flex-col lg:flex-row lg:h-auto h-screen items-right gap-10">
             {sections.map((section, index) => {
               const icon = sectionIcons[section];
