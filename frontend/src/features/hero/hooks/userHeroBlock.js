@@ -52,6 +52,7 @@ export const useHeroBlocks = () => {
   const [blocks, setBlocks] = useState(initialBlocks);
   const [isEditing, setIsEditing] = useState(false);
   const [profileImage, setProfileImage] = useState(ProfileImage);
+  const [bgColor, setBgColor] = useState("transparent");
 
   const updateProfileImage = (file) => {
     const url = URL.createObjectURL(file);
@@ -100,6 +101,8 @@ export const useHeroBlocks = () => {
     blocks,
     isEditing,
     profileImage,
+    bgColor,
+    setBgColor,
     updateProfileImage,
     startEditing,
     stopEditing,
