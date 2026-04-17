@@ -34,7 +34,6 @@ const presets = [
 const SectionColorPicker = ({ currentColor, onColorChange }) => {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-xs text-text-paragraph">Background</span>
       <div className="flex flex-row flex-wrap gap-1.5">
         {presets.map(({ hex, label }) => (
           <button

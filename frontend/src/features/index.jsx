@@ -73,7 +73,7 @@ const index = () => {
 
       {/* toggle dark/light mode */}
       <ThemeToggle />
-      <div className="text-sm lex flex-col text-[#fffffe] ">
+      <div className="text-sm flex gap-4 flex-col text-[#fffffe] ">
         {/* Hero */}
         <Hero />
         {/* Sections */}

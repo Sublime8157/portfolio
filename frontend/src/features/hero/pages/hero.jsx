@@ -48,12 +48,12 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="lg:h-screen relative h-auto flex flex-col"
+      className="lg:h-screen py-12 lg:my-4 relative flex flex-col"
       style={{ backgroundColor: bgColor }}
     >
       {/* Add Block Controls — only in edit mode */}
       {isEditing && (
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+        <div className="absolute hidden lg:block bottom-10 left-1/2 transform -translate-x-1/2 z-50">
           {/* Color Picker */}
           <SectionColorPicker
             currentColor={bgColor}
@@ -61,16 +61,16 @@ const Hero = () => {
           />
         </div>
       )}
-      <div className="lg:h-11/12 h-9/12 flex items-center">
+      <div className="lg:h-11/12 flex items-center">
         <div
-          className="relative px-20 flex w-full lg:flex-row lg:gap-0 gap-10 flex-col-reverse justify-between items-center"
+          className="relative lg:px-20 px-10 flex w-full lg:flex-row lg:gap-0 gap-10 flex-col-reverse justify-between items-center"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {(isHovered || isEditing) && (
             <button
               onClick={isEditing ? stopEditing : startEditing}
-              className="cursor-pointer absolute -top-6 right-20 z-10 text-xs px-2 py-1 
+              className="cursor-pointer absolute -top-6 lg:right-20 right-10 z-10 text-xs px-2 py-1 
                      rounded border transition-all duration-150
                      border-gray-600 text-text-paragraph hover:opacity-50
                      hover:border-gray-300 bg-transparent"
