@@ -50,7 +50,7 @@ const ProjectBlock = ({
         </button>
       )}
 
-      <Motion className="lg:shadow-none shadow-md shadow-shadow-color p-5 lg:p-10 pt-5 flex items-start lg:flex-row flex-col lg:gap-20">
+      <Motion className="lg:shadow-none shadow-md shadow-shadow-color p-5 flex items-start lg:flex-row flex-col lg:gap-20">
         {/* Image Stack */}
         <div className="relative lg:w-80 lg:m-0 ml-3 h-32 w-full lg:mb-0 mb-10 shrink-0">
           {project.images.map((image, i) => (

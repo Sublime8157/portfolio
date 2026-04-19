@@ -47,6 +47,7 @@ const initialExperiences = [
 export const useExperienceBlocks = () => {
   const [experiences, setExperiences] = useState(initialExperiences);
   const [isEditing, setIsEditing] = useState(false);
+  const [bgColor, setBgColor] = useState("transparent");
 
   const startEditing = () => setIsEditing(true);
   const stopEditing = () => setIsEditing(false);
@@ -118,5 +119,7 @@ export const useExperienceBlocks = () => {
     removeTag,
     updateTag,
     reorderExperiences,
+    bgColor,
+    setBgColor,
   };
 };

@@ -55,7 +55,7 @@ const index = () => {
 
   return (
     <div className="overflow-hidden bg-bg-main text-text-headline transition-colors duration-300">
-      <Loading show={showLoading} />
+      {/* <Loading show={showLoading} /> */}
       <div>
         <Nav />
       </div>
@@ -73,27 +73,14 @@ const index = () => {
 
       {/* toggle dark/light mode */}
       <ThemeToggle />
-
-      <div></div>
-      <div className="text-sm flex flex-col text-[#fffffe] lg:px-20 ">
+      <div className="text-sm flex flex-col text-[#fffffe] ">
         {/* Hero */}
-        <div
-          id="hero"
-          className="lg:h-screen h-auto lg:py-0 py-20 flex flex-col"
-        >
-          <div className="px-10 lg:h-11/12 h-9/12 flex items-center">
-            <Hero />
-          </div>
-        </div>
+        <Hero />
         {/* Sections */}
         {sections.map((section, index) => {
           const Component = sectionMap[section];
           return (
-            <div
-              key={index}
-              id={section.toLowerCase()}
-              className="lg:p-20 p-10"
-            >
+            <div key={index} id={section.toLowerCase()}>
               <Component />
             </div>
           );

@@ -40,6 +40,7 @@ const initialProjects = [
 export const useProjectBlocks = () => {
   const [projects, setProjects] = useState(initialProjects);
   const [isEditing, setIsEditing] = useState(false);
+  const [bgColor, setBgColor] = useState("transparent");
 
   const startEditing = () => setIsEditing(true);
   const stopEditing = () => setIsEditing(false);
@@ -131,5 +132,7 @@ export const useProjectBlocks = () => {
     removeTag,
     updateTag,
     reorderProjects,
+    bgColor,
+    setBgColor,
   };
 };

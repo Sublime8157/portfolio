@@ -15,6 +15,7 @@ import ProjectBlock from "./components/ProjectBlock.jsx";
 import Motion from "../utils/Motion.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
+import SectionColorPicker from "../../components/SectionColorPicker.jsx";
 
 const Projects = () => {
   const {
@@ -31,6 +32,8 @@ const Projects = () => {
     removeTag,
     updateTag,
     reorderProjects,
+    bgColor,
+    setBgColor,
   } = useProjectBlocks();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -63,16 +66,19 @@ const Projects = () => {
   };
 
   return (
-    <div>
+    <div
+      className="flex flex-col gap-8 lg:p-20 p-10"
+      style={{ backgroundColor: bgColor }}
+    >
       <Motion
         direction="top"
-        className="mb-12 text-lg lg:text-2xl text-center text-text-headline"
+        className="mb-5 text-lg lg:text-2xl text-center text-text-headline"
       >
         MOST RECENT PROJECT{projects.length > 1 ? "S" : ""}
       </Motion>
 
       <div
-        className="relative py-10"
+        className="relative"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -80,7 +86,7 @@ const Projects = () => {
         {(isHovered || isEditing) && (
           <button
             onClick={isEditing ? stopEditing : startEditing}
-            className="absolute -top-2 right-0 z-10 text-xs px-2 py-1 
+            className="absolute -top-8 right-0 z-10 text-xs px-2 py-1 
                        rounded border transition-all duration-150
                        border-gray-800 text-text-paragraph hover:opacity-50
                        hover:border-gray-300 bg-transparent cursor-pointer"
@@ -129,8 +135,17 @@ const Projects = () => {
             </button>
           </div>
         )}
+        {isEditing && (
+          <div className="relative hidden lg:block">
+            <div className="absolute -bottom-10 left-1/2 transform -translate-1/2">
+              <SectionColorPicker
+                currentColor={bgColor}
+                onColorChange={setBgColor}
+              />
+            </div>
+          </div>
+        )}
       </div>
-
       {/* Modal — unchanged from your original */}
       {selectedProject && (
         <div

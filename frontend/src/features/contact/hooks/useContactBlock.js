@@ -27,6 +27,7 @@ export const useContactBlocks = () => {
   const [subheading, setSubheading] = useState("<p>Feel free to reach out</p>");
   const [contactLinks, setContactLinks] = useState(initialContactList);
   const [isEditing, setIsEditing] = useState(false);
+  const [bgColor, setBgColor] = useState("transparent");
 
   const startEditing = () => setIsEditing(true);
   const stopEditing = () => setIsEditing(false);
@@ -60,5 +61,7 @@ export const useContactBlocks = () => {
     stopEditing,
     addContact,
     removeContact,
+    bgColor,
+    setBgColor,
   };
 };

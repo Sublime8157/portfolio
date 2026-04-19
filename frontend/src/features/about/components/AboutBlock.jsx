@@ -51,7 +51,7 @@ const AboutBlock = ({ card, onDelete, onUpdate, isEditing }) => {
 
       <Motion
         className="transition-all ease-in-out hover:scale-105 p-4 flex 
-                   w-full lg:text-base text-sm flex-col shadow-md 
+                   w-11/12 lg:text-base text-sm flex-col shadow-md 
                    shadow-shadow-color border-gray-600 justify-start 
                    items-start gap-4 text-[#a7a9be]"
       >

@@ -42,6 +42,7 @@ const initialCards = [
 export const useAboutBlocks = () => {
   const [cards, setCards] = useState(initialCards);
   const [isEditing, setIsEditing] = useState(false);
+  const [bgColor, setBgColor] = useState("transparent");
 
   const startEditing = () => setIsEditing(true);
   const stopEditing = () => setIsEditing(false);
@@ -75,6 +76,8 @@ export const useAboutBlocks = () => {
     deleteCard,
     updateCard,
     reorderCards,
+    bgColor,
+    setBgColor,
   };
 };
 

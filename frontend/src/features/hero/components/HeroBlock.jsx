@@ -87,7 +87,6 @@ const HeroBlock = ({
                 onClick={() => {
                   if (block.url.includes("@")) {
                     navigator.clipboard.writeText(block.url);
-                    console.log(copied);
                   } else {
                     window.open(block.url, "_blank");
                   }

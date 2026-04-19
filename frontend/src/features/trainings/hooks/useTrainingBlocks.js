@@ -35,6 +35,7 @@ const initialTrainings = [
 export const useTrainingBlocks = () => {
   const [trainings, setTrainings] = useState(initialTrainings);
   const [isEditing, setIsEditing] = useState(false);
+  const [bgColor, setBgColor] = useState("transparent");
 
   const startEditing = () => setIsEditing(true);
   const stopEditing = () => setIsEditing(false);
@@ -98,5 +99,7 @@ export const useTrainingBlocks = () => {
     removeTag,
     updateTag,
     reorderTrainings,
+    bgColor,
+    setBgColor,
   };
 };
