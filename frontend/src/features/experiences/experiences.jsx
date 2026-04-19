@@ -15,6 +15,7 @@ import ExperienceBlock from "./components/ExperienceBlock.jsx";
 import Motion from "../utils/Motion.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
+import SectionColorPicker from "../../components/SectionColorPicker.jsx";
 
 const Experiences = () => {
   const {
@@ -30,6 +31,8 @@ const Experiences = () => {
     removeTag,
     updateTag,
     reorderExperiences,
+    bgColor,
+    setBgColor,
   } = useExperienceBlocks();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -43,7 +46,10 @@ const Experiences = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div
+      className="flex flex-col gap-8 lg:p-20 p-10"
+      style={{ backgroundColor: bgColor }}
+    >
       <Motion
         direction="top"
         className="mt-10 text-center text-lg md:text-2xl text-text-headline"
@@ -107,6 +113,16 @@ const Experiences = () => {
             >
               +
             </button>
+          </div>
+        )}
+        {isEditing && (
+          <div className="relative lg:block hidden">
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+              <SectionColorPicker
+                currentColor={bgColor}
+                onColorChange={setBgColor}
+              />
+            </div>
           </div>
         )}
       </div>

@@ -15,6 +15,7 @@ import TrainingBlock from "./components/TrainingBlock.jsx";
 import Motion from "../utils/Motion.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
+import SectionColorPicker from "../../components/SectionColorPicker.jsx";
 
 const Trainings = () => {
   const {
@@ -29,6 +30,8 @@ const Trainings = () => {
     removeTag,
     updateTag,
     reorderTrainings,
+    bgColor,
+    setBgColor,
   } = useTrainingBlocks();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -42,7 +45,10 @@ const Trainings = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div
+      className="flex flex-col  lg:p-20 p-10"
+      style={{ backgroundColor: bgColor }}
+    >
       <Motion
         direction="top"
         className="text-center text-lg mb-10 md:text-2xl text-text-headline"
@@ -106,6 +112,16 @@ const Trainings = () => {
             >
               +
             </button>
+          </div>
+        )}
+        {isEditing && (
+          <div className="relative lg:block hidden">
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+              <SectionColorPicker
+                currentColor={bgColor}
+                onColorChange={setBgColor}
+              />
+            </div>
           </div>
         )}
       </div>

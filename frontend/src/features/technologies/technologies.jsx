@@ -14,6 +14,7 @@ import { useTechnologiesBlock } from "./hooks/useTechnologiesBlock.js";
 import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TechnologiesBlock from "./components/TechnologiesBlock.jsx";
+import SelectionColorPicker from "../../components/SectionColorPicker.jsx";
 
 const Technologies = () => {
   const {
@@ -28,6 +29,8 @@ const Technologies = () => {
     addTag,
     removeTag,
     updateTag,
+    bgColor,
+    setBgColor,
   } = useTechnologiesBlock();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -41,7 +44,10 @@ const Technologies = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 lg:p-20 p-10">
+    <div
+      className="flex flex-col gap-8 lg:p-20 p-10"
+      style={{ backgroundColor: bgColor }}
+    >
       <h1 className="text-lg lg:text-2xl text-center text-text-headline ">
         TECHNOLOGIES
       </h1>
@@ -102,6 +108,16 @@ const Technologies = () => {
             </div>
           </SortableContext>
         </DndContext>
+        {isEditing && (
+          <div className="relative lg:block hidden">
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+              <SelectionColorPicker
+                currentColor={bgColor}
+                onColorChange={setBgColor}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

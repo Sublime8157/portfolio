@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { useContactBlocks } from "./hooks/useContactBlock.js";
+import SectionColorPicker from "../../components/SectionColorPicker.jsx";
 
 const Contact = () => {
   const {
@@ -22,6 +23,8 @@ const Contact = () => {
     stopEditing,
     addContact,
     removeContact,
+    bgColor,
+    setBgColor,
   } = useContactBlocks();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -38,15 +41,22 @@ const Contact = () => {
 
   return (
     <div
-      className="relative"
+      className="relative lg:p-20 p-10"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      style={{ backgroundColor: bgColor }}
     >
+      <Motion
+        direction="top"
+        className="text-center text-lg md:text-2xl text-text-headline"
+      >
+        CONTACT
+      </Motion>
       {/* Edit / Save button */}
       {(isHovered || isEditing) && (
         <button
           onClick={isEditing ? stopEditing : startEditing}
-          className="absolute -top-6 right-0 z-10 text-xs px-2 py-1 
+          className="absolute right-10 z-10 text-xs px-2 py-1 
                      rounded border transition-all duration-150
                      border-gray-800 text-text-paragraph hover:opacity-50
                      hover:border-gray-300 bg-transparent cursor-pointer"
@@ -184,6 +194,16 @@ const Contact = () => {
           </Button>
         </Motion>
       </div>
+      {isEditing && (
+        <div className="relative lg:block hidden">
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+            <SectionColorPicker
+              currentColor={bgColor}
+              onColorChange={setBgColor}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
