@@ -48,7 +48,7 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="lg:h-screen py-12 lg:my-4 relative flex flex-col"
+      className="lg:h-screen py-20 relative flex flex-col"
       style={{ backgroundColor: bgColor }}
     >
       {/* Add Block Controls — only in edit mode */}

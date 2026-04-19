@@ -73,18 +73,14 @@ const index = () => {
 
       {/* toggle dark/light mode */}
       <ThemeToggle />
-      <div className="text-sm flex gap-4 flex-col text-[#fffffe] ">
+      <div className="text-sm flex flex-col text-[#fffffe] ">
         {/* Hero */}
         <Hero />
         {/* Sections */}
         {sections.map((section, index) => {
           const Component = sectionMap[section];
           return (
-            <div
-              key={index}
-              id={section.toLowerCase()}
-              className="lg:p-20 p-10"
-            >
+            <div key={index} id={section.toLowerCase()}>
               <Component />
             </div>
           );

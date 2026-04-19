@@ -14,6 +14,7 @@ import { useAboutBlocks } from "./hooks/useAboutBlock.js";
 import AboutBlock from "./components/AboutBlock.jsx";
 import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SectionColorPicker from "../../components/SectionColorPicker.jsx";
 
 const About = () => {
   const {
@@ -25,6 +26,8 @@ const About = () => {
     deleteCard,
     updateCard,
     reorderCards,
+    bgColor,
+    setBgColor,
   } = useAboutBlocks();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -38,7 +41,21 @@ const About = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div
+      className="relative flex flex-col gap-8 lg:p-20 p-10"
+      style={{ backgroundColor: bgColor }}
+    >
+      {/* Add Block Controls — only in edit mode */}
+      {isEditing && (
+        <div className="absolute hidden lg:block bottom-4 left-1/2 transform -translate-x-1/2 z-50">
+          {/* Color Picker */}
+          <SectionColorPicker
+            currentColor={bgColor}
+            onColorChange={setBgColor}
+          />
+        </div>
+      )}
+
       <h1 className="text-lg lg:text-2xl text-center text-text-headline">
         ABOUT
       </h1>
