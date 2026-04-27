@@ -1,14 +1,41 @@
 import express from "express";
 import Nodemailer from "nodemailer";
 import { MailtrapTransport } from "mailtrap";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const transport = Nodemailer.createTransport(
   MailtrapTransport({
     token: process.env.MAILTRAP_API_TOKEN,
   }),
 );
+
+const loadTemplate = (name, subject, message) => {
+  const templatePath = path.join(
+    __dirname,
+    "../../templates/email/portfolio.html",
+  );
+  let html = fs.readFileSync(templatePath, "utf-8");
+
+  const timestamp = new Date().toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return html
+    .replace("{{name}}", name)
+    .replace("{{subject}}", subject)
+    .replace("{{message}}", message)
+    .replace("{{timestamp}}", timestamp);
+};
 
 router.post("/", async (req, res) => {
   const { name, subject, message } = req.body;
@@ -30,12 +57,14 @@ router.post("/", async (req, res) => {
   );
 
   try {
+    const html = loadTemplate(name, subject, message);
+
     await transport.sendMail({
       from: { name: "Portfolio", address: "hello@demomailtrap.com" },
       to: [{ address: "nevojnarim@gmail.com" }],
       subject,
       text: `From: ${name}\n\n${message}`,
-      html: `<p><strong>From:</strong> ${name}</p><p>${message}</p>`,
+      html,
     });
 
     res.status(200).json({ message: "Email sent successfully." });

@@ -10,6 +10,8 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { useContactBlocks } from "./hooks/useContactBlock.js";
 import SectionColorPicker from "../../components/SectionColorPicker.jsx";
 import API from "../../../services/api.js";
+import button from "../utils/Button.jsx";
+import SuccessModal from "../../components/SuccessfullModal.jsx";
 
 const Contact = () => {
   const {
@@ -50,13 +52,21 @@ const Contact = () => {
     setEmailData({ ...emailData, [e.target.name]: e.target.value });
   };
 
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!emailData.name || !emailData.subject || !emailData.message) return;
+    setButtonLoading(true);
+
     try {
       const response = await API.post("email/sendEmail", emailData);
-      console.log(response);
+      setShowModal(true);
     } catch (e) {
       console.error(e);
+      alert("Failed to send email.");
+    } finally {
+      setButtonLoading(false);
     }
   };
 
@@ -85,6 +95,8 @@ const Contact = () => {
           <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />
         </button>
       )}
+
+      <SuccessModal isOpen={showModal} onClose={() => setShowModal(false)} />
 
       <div className="items-center lg:p-10 pt-5 flex lg:flex-row flex-col justify-evenly">
         {/* Left column — heading, subheading, contact links */}
@@ -220,8 +232,22 @@ const Contact = () => {
               classname="h-40"
               onChange={handleChange}
             />
-            <Button className="w-100 py-2! text-accent text-accent-text">
-              Submit
+            <Button
+              className="w-100 py-2! text-accent text-accent-text"
+              disabled={buttonLoading}
+              type="submit"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "40px",
+              }}
+            >
+              {buttonLoading ? (
+                <span className="buttonLoader" />
+              ) : (
+                "Send Message"
+              )}
             </Button>
           </form>
         </Motion>
