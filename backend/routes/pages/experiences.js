@@ -1,4 +1,4 @@
-import prisma from "../lib/prisma.ts";
+import prisma from "../../lib/prisma.ts";
 import express from "express";
 
 const router = express.Router();

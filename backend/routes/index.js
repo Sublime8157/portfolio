@@ -1,23 +1,34 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url"; // 👈 add pathToFileURL
 
 const router = express.Router();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const routesPath = path.join(__dirname);
-const files = fs.readdirSync(routesPath);
+async function registerRoutes(router, dirPath, baseRoute = "") {
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
-for (const file of files) {
-  if (file === "index.js" || !file.endsWith(".js")) continue;
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
 
-  const module = await import(`./${file}`);
-  const routeName = path.parse(file).name;
-
-  router.use(`/${routeName}`, module.default);
+    if (entry.isDirectory()) {
+      await registerRoutes(router, fullPath, `${baseRoute}/${entry.name}`);
+    } else if (
+      entry.isFile() &&
+      entry.name.endsWith(".js") &&
+      entry.name !== "index.js"
+    ) {
+      const routeName = path.parse(entry.name).name;
+      const routePath = `${baseRoute}/${routeName}`;
+      const fileUrl = pathToFileURL(fullPath).href; // 👈 convert to file:// URL
+      const module = await import(fileUrl);
+      router.use(routePath, module.default);
+    }
+  }
 }
+
+await registerRoutes(router, __dirname);
 
 export default router;

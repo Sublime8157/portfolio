@@ -9,6 +9,9 @@ import { faPenToSquare, faSave } from "@fortawesome/free-regular-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { useContactBlocks } from "./hooks/useContactBlock.js";
 import SectionColorPicker from "../../components/SectionColorPicker.jsx";
+import API from "../../../services/api.js";
+import button from "../utils/Button.jsx";
+import SuccessModal from "../../components/SuccessfullModal.jsx";
 
 const Contact = () => {
   const {
@@ -39,6 +42,35 @@ const Contact = () => {
     }
   };
 
+  const [emailData, setEmailData] = useState({
+    name: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setEmailData({ ...emailData, [e.target.name]: e.target.value });
+  };
+
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!emailData.name || !emailData.subject || !emailData.message) return;
+    setButtonLoading(true);
+
+    try {
+      const response = await API.post("email/sendEmail", emailData);
+      setShowModal(true);
+      setEmailData({ name: "", subject: "", message: "" });
+    } catch (e) {
+      console.error(e);
+      alert("Failed to send email.");
+    } finally {
+      setButtonLoading(false);
+    }
+  };
+
   return (
     <div
       className="relative lg:p-20 p-10"
@@ -64,6 +96,8 @@ const Contact = () => {
           <FontAwesomeIcon icon={isEditing ? faSave : faPenToSquare} />
         </button>
       )}
+
+      <SuccessModal isOpen={showModal} onClose={() => setShowModal(false)} />
 
       <div className="items-center lg:p-10 pt-5 flex lg:flex-row flex-col justify-evenly">
         {/* Left column — heading, subheading, contact links */}
@@ -181,17 +215,45 @@ const Contact = () => {
         </div>
 
         {/* Right column — Form, always functional regardless of edit mode */}
-        <Motion className="flex flex-col gap-2 lg:p-0 w-12/12 lg:w-100">
-          <InputText name="name" placeholder="Name (Optional)" />
-          <InputText name="subject" placeholder="Subject" />
-          <InputTextArea
-            name="message"
-            placeholder="message"
-            classname="h-40"
-          />
-          <Button className="w-full py-2! text-accent text-accent-text">
-            Submit
-          </Button>
+        <Motion className=" lg:p-0 w-12/12 lg:w-100">
+          <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+            <InputText
+              onChange={handleChange}
+              name="name"
+              placeholder="Name (Optional)"
+              value={emailData.name}
+            />
+            <InputText
+              onChange={handleChange}
+              name="subject"
+              placeholder="Subject"
+              value={emailData.subject}
+            />
+            <InputTextArea
+              name="message"
+              placeholder="message"
+              classname="h-40"
+              onChange={handleChange}
+              value={emailData.message}
+            />
+            <Button
+              className="w-100 py-2! text-accent-text"
+              disabled={buttonLoading}
+              type="submit"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "40px",
+              }}
+            >
+              {buttonLoading ? (
+                <span className="buttonLoader" />
+              ) : (
+                "Send Message"
+              )}
+            </Button>
+          </form>
         </Motion>
       </div>
       {isEditing && (
