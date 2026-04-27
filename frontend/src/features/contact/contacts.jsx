@@ -62,6 +62,7 @@ const Contact = () => {
     try {
       const response = await API.post("email/sendEmail", emailData);
       setShowModal(true);
+      setEmailData({ name: "", subject: "", message: "" });
     } catch (e) {
       console.error(e);
       alert("Failed to send email.");
@@ -220,20 +221,23 @@ const Contact = () => {
               onChange={handleChange}
               name="name"
               placeholder="Name (Optional)"
+              value={emailData.name}
             />
             <InputText
               onChange={handleChange}
               name="subject"
               placeholder="Subject"
+              value={emailData.subject}
             />
             <InputTextArea
               name="message"
               placeholder="message"
               classname="h-40"
               onChange={handleChange}
+              value={emailData.message}
             />
             <Button
-              className="w-100 py-2! text-accent text-accent-text"
+              className="w-100 py-2! text-accent-text"
               disabled={buttonLoading}
               type="submit"
               style={{

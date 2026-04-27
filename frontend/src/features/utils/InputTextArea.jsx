@@ -3,6 +3,7 @@ const InputTextArea = ({
   name = "",
   classname = "",
   onChange = () => {},
+  ...props
 }) => {
   return (
     <textarea
@@ -11,6 +12,7 @@ const InputTextArea = ({
       name={name}
       placeholder={placeholder}
       onChange={onChange}
+      {...props}
     ></textarea>
   );
 };
